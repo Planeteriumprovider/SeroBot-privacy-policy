@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📜 DSGVO / Privacy Policy – SeroBot 🥶</title>
+  <meta name="description" content="Offizielle DSGVO & Privacy Policy von SeroBot – EST 2025 • Eigentümer: Ben • Moderator: Julian">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3209/3209265.png" type="image/png">
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-color: #f8fafc;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --transition: 0.3s ease;
+      --radius: 14px;
+    }
+
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    /* Hamburger Menu */
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      font-size: 22px;
+      border-radius: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background var(--transition);
+      z-index: 10;
+    }
+
+    .menu-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .menu {
+      position: fixed;
+      top: 60px;
+      left: 20px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+      display: none;
+      flex-direction: column;
+      padding: 12px 0;
+      width: 220px;
+      animation: fadeIn 0.3s ease;
+      z-index: 9;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: var(--text-color);
+      padding: 12px 20px;
+      display: block;
+      transition: background var(--transition);
+    }
+
+    .menu a:hover {
+      background: var(--accent-hover);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 950px;
+      width: 90%;
+      margin: 80px auto;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      padding: 40px 50px;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-style: italic;
+      color: #94a3b8;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hamburger Menu Button -->
+  <button class="menu-btn" id="menuBtn">☰</button>
+
+  <!-- Dropdown Menu -->
+  <nav class="menu" id="menu">
+    <a href="index.html">🏠 Startseite</a>
+    <a href="privacy.html">📜 Datenschutz / Privacy Policy</a>
+  </nav>
+
+  <div class="container">
+    <h1>🧊 Willkommen bei SeroBot 🥶</h1>
+    <p><strong>Eigentümer:</strong> Ben<br>
+       <strong>Moderator:</strong> Julian</p>
+    <p>SeroBot wurde aus Leidenschaft und Spaß gegründet – um gemeinsame Bindung zu stärken und eine Community aufzubauen, die auf Vertrauen und Kreativität basiert.</p>
+
+    <footer>
+      🧊 <strong>SeroBot 🥶 • EST 2025</strong><br>
+      „Wir bauen nicht nur Bots – wir bauen Verbindungen.“ 🤝
+    </footer>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const menu = document.getElementById("menu");
+    let open = false;
+
+    menuBtn.addEventListener("click", () => {
+      open = !open;
+      menu.style.display = open ? "flex" : "none";
+    });
+
+    // Schließt das Menü, wenn außerhalb geklickt wird
+    document.addEventListener("click", (e) => {
+      if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+        menu.style.display = "none";
+        open = false;
+      }
+    });
+  </script>
+</body>
+</html>
