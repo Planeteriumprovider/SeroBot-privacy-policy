@@ -37,7 +37,7 @@ SeroBot steht für **Transparenz, Sicherheit und Fairness** – ohne Kompromisse
 ---
 
 ### 💡 Motto
-> „Wir bauen nicht nur Bots – wir bauen Verbindungen.“ 🤝
+> „Wir bauen nicht nur Bots – wir bauen Unsere Verbindungen.“ 🤝
 
 ---
 
@@ -49,7 +49,6 @@ SeroBot steht für **Transparenz, Sicherheit und Fairness** – ohne Kompromisse
 ---
 
 <p align="center">
-  🧊 <strong>SeroBot</strong> – cool im Namen, stark im Herzen.  
-  <br>
-  <sub>© 2025 SeroBot Team. Alle Rechte vorbehalten.</sub>
-</p>
+🧊 <strong>SeroBot 🥶 • EST 2025</strong><br>„Deine Daten bleiben privat – lokal & sicher.“ <sub>™ 2025 SeroBot Team. Alle Rechte vorbehalten.</sub>
+  </p>
+  
