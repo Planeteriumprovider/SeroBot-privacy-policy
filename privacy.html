@@ -29,6 +29,54 @@
       min-height: 100vh;
     }
 
+        /* Hamburger Menu */
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      font-size: 22px;
+      border-radius: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background var(--transition);
+      z-index: 10;
+    }
+
+    .menu-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .menu {
+      position: fixed;
+      top: 60px;
+      left: 20px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+      display: none;
+      flex-direction: column;
+      padding: 12px 0;
+      width: 220px;
+      animation: fadeIn 0.3s ease;
+      z-index: 9;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: var(--text-color);
+      padding: 12px 20px;
+      display: block;
+      transition: background var(--transition);
+    }
+
+    .menu a:hover {
+      background: var(--accent-hover);
+    }
+
+    /*Container*/
     .container {
       max-width: 900px;
       width: 90%;
@@ -255,6 +303,7 @@
       enSection.classList.toggle('active', isGerman);
       toggleBtn.textContent = isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English';
     });
+    // Hamburger Menu
     const menuBtn = document.getElementById("menuBtn");
     const menu = document.getElementById("menu");
     let open = false;
