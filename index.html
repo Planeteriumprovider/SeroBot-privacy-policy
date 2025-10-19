@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>📜 DSGVO / Privacy Policy – SeroBot 🥶</title>
+  <title>🏡 Homepage – SeroBot 🥶</title>
+  <meta name="description" content="Offizielle DSGVO & Privacy Policy von SeroBot – EST 2025 • Eigentümer: Ben • Moderator: Julian">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3209/3209265.png" type="image/png">
   <style>
     :root {
       --bg-color: #0f172a;
@@ -12,14 +14,14 @@
       --accent: #38bdf8;
       --accent-hover: #0ea5e9;
       --transition: 0.3s ease;
-      --radius: 12px;
-      --warning: #a41414;
-      --translated: #d0b50b;
+      --radius: 14px;
+      --warning: #ef4444;
+      --translated: #facc15;
     }
 
     body {
       font-family: "Segoe UI", Roboto, sans-serif;
-      background-color: var(--bg-color);
+      background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
       color: var(--text-color);
       margin: 0;
       padding: 0;
@@ -28,7 +30,8 @@
       align-items: flex-start;
       min-height: 100vh;
     }
-    /* Hamburger Menu */
+
+        /* Hamburger Menu */
     .menu-btn {
       position: fixed;
       top: 20px;
@@ -75,14 +78,15 @@
       background: var(--accent-hover);
     }
 
+    /*Others*/
     .container {
-      max-width: 900px;
+      max-width: 950px;
       width: 90%;
       margin: 60px auto;
       background: var(--card-bg);
       border-radius: var(--radius);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      padding: 30px 40px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      padding: 40px 50px;
       position: relative;
       overflow: hidden;
     }
@@ -90,17 +94,19 @@
     h1 {
       text-align: center;
       color: var(--accent);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      font-size: 2em;
     }
 
     h2 {
       margin-top: 30px;
       color: var(--accent);
+      font-size: 1.4em;
     }
 
     p {
       line-height: 1.6;
-      margin: 8px 0;
+      margin: 10px 0;
     }
 
     .lang-btn {
@@ -137,34 +143,28 @@
 
     footer {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 50px;
       font-style: italic;
       color: #94a3b8;
+      font-size: 0.9em;
     }
 
-    .highlight {
-      color: var(--accent);
-      font-weight: bold;
+    .highlight { color: var(--accent); font-weight: bold; }
+    .warninghighlight { color: var(--warning); font-weight: bold; }
+    .translatedinfo { color: var(--translated); font-weight: bold; }
+
+    .badges {
+      text-align: center;
+      margin-top: 10px;
     }
 
-    .warninghighlight {
-      color: var(--warning);
-      font-weight: bold;
-    }
-    .translatedinfo {
-      color: var(--translated);
-      font-weight: bold;
+    .badges img {
+      margin: 3px;
     }
 
     @media (max-width: 600px) {
-      .container {
-        padding: 20px;
-      }
-      .lang-btn {
-        top: 15px;
-        right: 15px;
-        padding: 8px 14px;
-      }
+      .container { padding: 25px; }
+      .lang-btn { top: 15px; right: 15px; padding: 8px 14px; }
     }
   </style>
 </head>
@@ -172,9 +172,13 @@
   <div class="container">
     <button class="lang-btn" id="toggleLang">🇬🇧 English</button>
 
-    <!-- 🇩🇪 Deutsch -->
-    <div id="de" class="section active">
-        <!-- Hamburger Menu Button -->
+    <div class="badges">
+      <img src="https://img.shields.io/badge/SeroBot-EST•2025-blue?style=for-the-badge&logo=github" alt="SeroBot Badge"/>
+      <img src="https://img.shields.io/badge/Made%20with-♥️%20by%20Julian-black?style=for-the-badge" alt="Made with Love"/>
+      <img src="https://img.shields.io/badge/Open%20Source-Contact%20Us!-brightgreen?style=for-the-badge&logo=open-source-initiative" alt="Open Source"/>
+    </div>
+
+    <!-- 🗂 Hamburger-Menu Button -->
   <button class="menu-btn" id="menuBtn">☰</button>
 
   <!-- Dropdown Menu -->
@@ -182,48 +186,40 @@
     <a href="index.html">🏠 Startseite</a>
     <a href="privacy.html">📜 Datenschutz / Privacy Policy</a>
   </nav>
-
+    
+    <!-- 🇩🇪 Deutsch -->
+    <div id="de" class="section active">
       <h1>📜 DSGVO / Datenschutz</h1>
-      <p><strong>Letzte Aktualisierung:</strong> 18.10.2025  | 21:00 Uhr</p>
+      <p><strong>Letzte Aktualisierung:</strong> 18. Oktober 2025 | 21:00 Uhr</p>
 
-      <h2>1. Verantwortlicher</h2>
-      <p><span class="highlight">SeroBot 🥶</span><br>Interner Bot-Dienst – Betreiber des Systems:<br>
-      <b>Ben</b> – Gründer, Eigentümer, Hoster<br>
-      <b>Julian</b> – Moderator, Designer, Zuständiger für Privacy Policy (Erstellung).</p>
+      <h2>💎 Eigentümer</h2>
+      <p><strong>Dev4SeroBot | Ben</strong><br>
+      Gründer, Eigentümer von SeroBot, Developer, Umsetzung & Verantwortlicher für alle Inhalte.</p>
 
-      <h2><b><span class="warninghighlight">Disclaimer!</span></b></h2>
-      <p><span class="warninghighlight">Julian ist nicht verantwortlich für eine rechtsgültige Privacy Policy und übernimmt keinerlei Haftung bei Fehlern, Ungültigkeit oder rechtlichen Mängeln.</span></p>
+      <h2>🌍 Moderator</h2>
+      <p><strong>Dev4Planeterium | Julian</strong><br>
+      Designer, Zuständiger für Website, Datenschutz, Planung, Marketing, Partnerschaften und Moderation.</p>
 
-      <h2>2. Allgemeine Informationen</h2>
-      <p>Diese Datenschutzerklärung informiert Sie über die Art, den Umfang und den Zweck der Verarbeitung personenbezogener Daten innerhalb dieses Bots gemäß der <strong>DSGVO (EU 2016/679)</strong>.</p>
+      <h2>📩 Kontakt</h2>
+      <p><b>E-Mail:</b> <a href="mailto:datenschutz.serobot@yahoo.com" style="color:var(--accent)">datenschutz.serobot@yahoo.com</a></p>
 
-      <h2>3. Datenerhebung und Nutzung</h2>
-      <p>Gespeichert werden nur Daten, die für die Bot-Funktionen notwendig sind (z. B. Spielstände, Level, Coins „¥ ZèroXCoin“, XP, Statistiken). Diese Daten dienen ausschließlich der Funktionalität des Bots.</p>
+      <h2>💬 Über das Projekt</h2>
+      <p><strong>SeroBot</strong> wurde aus Leidenschaft und Spaß gegründet – mit dem Ziel, gemeinsame Bindungen zu stärken und eine Plattform für echte Community-Vibes zu schaffen.</p>
 
-      <h2>4. Keine Weitergabe an Dritte</h2>
-      <p>Ihre Telefonnummer, Nachrichten und Medien werden <strong>nicht an Dritte weitergegeben</strong> und <strong>nicht extern verarbeitet</strong>.</p>
+      <h2>⚙️ Datenschutz-Hinweis</h2>
+      <p>Diese Policy beschreibt, wie Daten innerhalb des Bots respektvoll verarbeitet werden. Keine Weitergabe, keine Cloud – nur lokale Speicherung. 🔒</p>
 
-      <h2>5. Lokale Speicherung</h2>
-      <p>Alle Daten werden <strong>lokal</strong> in der internen Datenbank des Bots gespeichert. Keine Cloud-, Drittanbieter- oder Werbeverarbeitung.</p>
+      <h2>🌐 Jahr der Gründung</h2>
+      <p><strong>2025</strong> – gebaut auf Vertrauen, Respekt und Teamgeist.</p>
 
-      <h2>6. Löschung der Daten</h2>
-      <p>Sie können jederzeit die Löschung Ihrer Daten anfordern. Danach werden sämtliche Einträge dauerhaft entfernt.</p>
+      <h2>💡 Motto</h2>
+      <blockquote>„Wir bauen nicht nur Bots – wir bauen unsere Verbindungen.“ 🤝</blockquote>
 
-      <h2>7. Sicherheit</h2>
-      <p>Der Bot verwendet technische und organisatorische Maßnahmen zum Schutz vor unbefugtem Zugriff, Verlust oder Missbrauch.</p>
-      <p><strong>Dennoch haftet jeder für sich selbst. Der Nutzer ist für sämtliche Verluste, Sicherheitslücken oder fehlerhaftes Verhalten verantwortlich!</strong></p>
-
-      <h2>8. Rechtsgrundlage</h2>
-      <p>Die Verarbeitung erfolgt gemäß <strong>Art. 6 Abs. 1 lit. b DSGVO</strong> (Vertragserfüllung), um Bot-Funktionen sicher bereitzustellen.</p>
-
-      <h2>9. Kontakt</h2>
-      <p>📩 <strong>Datenschutzanfragen</strong>: 
-        <a href="mailto:planeteriumprovider@gmail.com?subject=📩%20DATENLÖSCHUNG%20ERFORDERLICH!&body=Guten%20Tag%20Damen%20und%20Herren,%20sowie%20auch%20die%20zuständigen%20Datenschutzbeauftragten.%0D%0A%0D%0AHiermit%20beantrage%20ich%20den%20Widerruf%20meiner%20Zustimmung%20zur%20Datenverarbeitung%20und%20bitte%20um%20die%20vollständige%20Löschung%20aller%20über%20mich%20gespeicherten%20und%20verarbeiteten%20Daten.%20Mir%20ist%20bewusst,%20dass%20diese%20nach%20der%20Löschung%20nicht%20wiederhergestellt%20werden%20können.%0D%0A%0D%0AGrund%20der%20Löschung:%20[Bitte%20geben%20Sie%20hier%20Ihren%20Grund%20für%20die%20Löschung%20an.]%0D%0A%0D%0AMeine%20Serial-Nummer:%20[Bitte%20nennen%20Sie%20uns%20Ihre%20Serial-Nummer,%20die%20Sie%20bei%20der%20Registrierung%20erhalten%20haben.%20Ohne%20diese%20können%20wir%20Ihre%20Daten%20nicht%20löschen.]%0D%0A%0D%0AMit%20freundlichen%20Grüßen,%0D%0A[Dein%20Name]">📩 Datenlöschung beantragen!</a></p>
-        <p><b>Email:</b> datenschutz.serobot@yahoo.com
-</a>
-      </p>
-
-      <footer>🧊 <strong>SeroBot 🥶 • EST 2025</strong><br>„Deine Daten bleiben privat – lokal & sicher.“</footer>
+      <footer>
+        🧊 <strong>SeroBot 🥶 • EST 2025</strong><br>
+        „Deine Daten bleiben privat – lokal & sicher.“<br><br>
+        <sub>™ Trademarked. 2025 SeroBot Team. Alle Rechte vorbehalten.</sub>
+      </footer>
     </div>
 
     <!-- 🇬🇧 English -->
@@ -231,44 +227,36 @@
       <h1>📜 GDPR / Privacy Policy</h1>
       <p><strong>Last Updated:</strong> October 18, 2025 | 9:00 PM</p>
 
-      <h2>1. Controller</h2>
-      <p><span class="highlight">SeroBot 🥶</span><br>Internal bot service – System operated by:<br>
-      <b>Ben</b> – Founder, Owner, Host<br>
-      <b>Julian</b> – Moderator, Designer, Responsible for Privacy Policy (Creation).</p>
+      <h2>💎 Owner</h2>
+      <p><strong>Dev4SeroBot | Ben</strong><br>
+      Founder, Owner, Developer, responsible for all content and implementation.</p>
 
-      <h2><b><span class="warninghighlight">Disclaimer!</span></b></h2>
-      <p><span class="warninghighlight">Julian is not legally responsible for the validity of this Privacy Policy and assumes no liability for errors, invalidity, or legal deficiencies.</span></p>
+      <h2>🌍 Moderator</h2>
+      <p><strong>Dev4Planeterium | Julian</strong><br>
+      Designer, responsible for website, privacy, planning, marketing, partnerships, and moderation.</p>
 
-      <h2>2. General Information</h2>
-      <p>This Privacy Policy informs you about the type, scope, and purpose of personal data processing within this bot in accordance with the <strong>General Data Protection Regulation (EU 2016/679)</strong>.</p>
+      <h2>📩 Contact</h2>
+      <p><b>Email:</b> <a href="mailto:datenschutz.serobot@yahoo.com" style="color:var(--accent)">datenschutz.serobot@yahoo.com</a></p>
 
-      <h2>3. Data Collection and Usage</h2>
-      <p>Only data required for the bot’s functions are stored (e.g., game progress, levels, coins “¥ ZèroXCoin”, XP, statistics). These are used solely to ensure proper functionality.</p>
+      <h2>💬 About the Project</h2>
+      <p><strong>SeroBot</strong> was founded out of passion and fun — to strengthen bonds and build a platform full of community vibes and creative energy.</p>
 
-      <h2>4. No Disclosure to Third Parties</h2>
-      <p>Your phone number, messages, and media are <strong>not shared</strong> with third parties and <strong>not processed externally</strong>.</p>
+      <h2>⚙️ Privacy Notice</h2>
+      <p>This policy explains how data is respectfully handled within the bot. No sharing, no cloud — only local storage. 🔒</p>
 
-      <h2>5. Local Storage</h2>
-      <p>All data is stored <strong>locally</strong> in the bot’s internal database. No cloud, third-party, or advertising-related processing takes place.</p>
+      <h2>🌐 Year of Foundation</h2>
+      <p><strong>2025</strong> – built on trust, respect, and teamwork.</p>
 
-      <h2>6. Data Deletion</h2>
-      <p>You can request deletion of your personal data at any time. Once deleted, all information is permanently erased.</p>
+      <h2>💡 Motto</h2>
+      <blockquote>“We don’t just build bots – we build our connections.” 🤝</blockquote>
 
-      <h2>7. Security</h2>
-      <p>The bot uses technical and organizational measures to protect against unauthorized access, loss, or misuse.</p>
-      <p><strong>However, each user is responsible for their own actions. The operator is not liable for any losses, security issues, or malfunctions caused by user activity.</strong></p>
+      <p><h5><span class="translatedinfo">ℹ️ Translated by OpenAI</span></h5></p>
 
-      <h2>8. Legal Basis</h2>
-      <p>Data is processed under <strong>Article 6(1)(b) GDPR</strong> (Contract Fulfillment) to ensure the safe and reliable operation of bot functions.</p>
-
-      <h2>9. Contact</h2>
-      <p>📩 <strong>Privacy Requests</strong>: 
-        <a href="mailto:planeteriumprovider@gmail.com?subject=📩%20DATA%20DELETION%20REQUEST!&body=Dear%20Sir%20or%20Madam,%0D%0A%0D%0AI%20hereby%20withdraw%20my%20consent%20to%20data%20processing%20and%20request%20the%20complete%20deletion%20of%20all%20data%20stored%20and%20processed%20about%20me.%0D%0A%0D%0AReason%20for%20deletion:%20[Please%20state%20your%20reason%20for%20requesting%20deletion.]%0D%0A%0D%0AMy%20Serial%20Number:%20[Please%20provide%20the%20serial%20number%20you%20received%20during%20registration.%20Without%20this,%20we%20cannot%20process%20your%20deletion%20request.]%0D%0A%0D%0AThank%20you%20for%20your%20time%20and%20for%20processing%20my%20data%20deletion%20request.%0D%0A%0D%0ABest%20regards,%0D%0A[Your%20Name]">📩 Request Data Deletion!</a></p>
-        <p><b>Email:</b> datenschutz.serobot@yahoo.com
-      </p>
-      <p><h5><span class="translatedinfo">ℹ️ Translated by OpenAi</span></h5></p>
-
-      <footer>🧊 <strong>SeroBot 🥶 • EST 2025</strong><br>“Your data stays private – local & secure.”</footer>
+      <footer>
+        🧊 <strong>SeroBot 🥶 • EST 2025</strong><br>
+        “Your data stays private – local & secure.”<br><br>
+        <sub>™ Trademarked. 2025 SeroBot Team. All rights reserved.</sub>
+      </footer>
     </div>
   </div>
 
