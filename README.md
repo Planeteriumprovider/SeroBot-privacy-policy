@@ -1,7 +1,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/SeroBot-EST•2025-blue?style=for-the-badge&logo=github" alt="SeroBot Badge"/>
   <img src="https://img.shields.io/badge/Made%20with-♥️ by Julian-black?style=for-the-badge" alt="Made with Love"/>
-  <img src="https://img.shields.io/badge/Open%20Source-Contact Us!-brightgreen?style=for-the-badge&logo=open-source-initiative" alt="Open Source"/>
 </p>
 
 ---
