@@ -44,12 +44,18 @@ SeroBot steht für **Transparenz, Sicherheit und Fairness** – ohne Kompromisse
   <img src="https://img.shields.io/badge/Powered%20by-Julian & Ben-orange?style=for-the-badge&logo=people" alt="Community Badge"/>
 </p>
 
+### DISCLAIMER!
+Lizenziert unter der Apache-Lizenz, Version 2.0 (die „Lizenz“);
+   Sie dürfen diese Datei nur in Übereinstimmung mit der Lizenz verwenden.
+   Sie können eine Kopie der Lizenz erhalten unter
+
+       http://www.apache.org/licenses/LICENSE-2.0
+       
 ---
 
 <p align="center">
 🧊 <strong>SeroBot 🥶 • EST 2025</strong><br>„Deine Daten bleiben privat – lokal & sicher.“ 
 <p></p>
 <p></p>
-<sub>™ Trademarked. 2025 SeroBot Team. Alle Rechte vorbehalten.</sub>
+<sub> Apache LICENSE-2.0. Copyright 2025  planeteriumprovider/Julian.F .  2025 SeroBot Team. Alle Rechte vorbehalten.</sub>
   </p>
-  
