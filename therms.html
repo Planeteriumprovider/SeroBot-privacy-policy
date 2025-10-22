@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 – Seite nicht gefunden | SeroBot 🥶</title>
+  <style>
+    :root {
+      --rainbow: linear-gradient(
+        90deg,
+        #b80000,
+        #b81f00,
+        #b83d00,
+        #b85c00,
+        #b87a00,
+        #b89900,
+        #b8b800,
+        #99b800,
+        #7ab800,
+        #5cb800,
+        #3db800,
+        #1fb800,
+        #00b800,
+        #00b81f,
+        #00b83d,
+        #00b85c,
+        #00b87a,
+        #00b899,
+        #00b8b8,
+        #0099b8,
+        #007ab8,
+        #005cb8,
+        #003db8,
+        #001fb8,
+        #0000b8,
+        #1f00b8,
+        #3d00b8,
+        #5c00b8,
+        #7a00b8,
+        #9900b8,
+        #b800b8
+      );
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-color: #f8fafc;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --transition: 0.3s ease;
+      --radius: 12px;
+      --warning: #a41414;
+      --translated: #d0b50b;
+    }
+
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 90%;
+      margin: 40px auto;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      padding: 30px 40px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 8rem;
+      color: #ff4040;
+      text-shadow: 0 0 30px #ff2020;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 20px #ff4040; }
+      50% { text-shadow: 0 0 60px #ff8080; }
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .blockbox,
+    .blockboxrainbow {
+      border-radius: 20px;
+      padding: 1.3rem 2rem;
+      border: 1px solid #ffe3f361;
+      margin: 1rem auto;
+      max-width: 600px;
+      backdrop-filter: blur(5px);
+    }
+
+    .blockbox {
+      background: #3939396e;
+      box-shadow: 0 0 10px 5px rgba(186, 105, 255, 0.5);
+    }
+
+    .blockboxrainbow {
+      background: #3939396e;
+      border: 2px solid transparent;
+      border-radius: 20px;
+      border-image-slice: 1;
+      box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 2rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.8rem 1.6rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background var(--transition);
+    }
+
+    a:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 0 20px var(--accent-hover);
+    }
+
+    footer {
+      margin-top: 40px;
+      font-style: italic;
+      color: #94a3b8;
+    }
+
+    .lang-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      border: none;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .lang-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 5rem; }
+      h2 { font-size: 1.4rem; }
+      p { font-size: 1rem; }
+      .lang-btn {
+        top: 10px;
+        right: 10px;
+        padding: 8px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="lang-btn" id="toggleLang">🇬🇧 English</button>
+
+    <!-- 🇩🇪 Deutsch -->
+    <div id="de" class="section active">
+      <h1>404</h1>
+      <h2>Diese Seite ist wohl im All erfroren 🌍🚀</h2>
+      <div class="blockboxrainbow">
+        <p>🚧 <strong>Halt Stop!</strong> Es scheint so, als ob diese Seite sich derzeit im Bau befindet!</p>
+      </div>
+      <br>
+      <div class="blockbox">
+        <p><strong>🌱 Aber hey!</strong> Keine Sorge, wir sind bereits dabei, das Problem zu lösen.</p>
+      </div>
+     <br><br>
+      <hr>
+      <p>Vielleicht besuchst du einfach nochmal unsere Startseite?</p>
+      <br>
+      <a href="index.html">⬅️ Zurück zur Startseite</a>
+
+      <footer>© 2025 PlaneteriumProvider</footer>
+    </div>
+
+    <!-- 🇬🇧 English -->
+    <div id="en" class="section">
+      <h1>404</h1>
+      <h2>This page seems to be frozen in space 🌍🚀</h2>
+
+      <div class="blockboxrainbow">
+        <p>🚧 <strong>Hold up!</strong> Looks like this page is currently under construction!</p>
+      </div>
+<br>
+      <div class="blockbox">
+        <p><strong>🌱 But hey!</strong> Don’t worry, we’re already working on fixing it.</p>
+      </div>
+<br><br>
+<hr>
+      <p>Maybe try visiting our homepage again?</p>
+      <br>
+      <a href="index.html">⬅️ Back to homepage</a>
+
+      <footer>© 2025 PlaneteriumProvider</footer>
+    </div>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('toggleLang');
+    const deSection = document.getElementById('de');
+    const enSection = document.getElementById('en');
+
+    toggleBtn.addEventListener('click', () => {
+      const isGerman = deSection.classList.contains('active');
+      deSection.classList.toggle('active', !isGerman);
+      enSection.classList.toggle('active', isGerman);
+      toggleBtn.textContent = isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English';
+    });
+  </script>
+</body>
+  </html>
