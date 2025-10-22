@@ -57,5 +57,5 @@ Lizenziert unter der Apache-Lizenz, Version 2.0 (die „Lizenz“);
 🧊 <strong>SeroBot 🥶 • EST 2025</strong><br>„Deine Daten bleiben privat – lokal & sicher.“ 
 <p></p>
 <p></p>
-<sub> Apache LICENSE-2.0. Copyright 2025  planeteriumprovider/Julian.F .  2025 SeroBot Team. Alle Rechte vorbehalten.</sub>
+<sub> Apache LICENSE-2.0. Copyright 2025  planeteriumprovider. 2025 SeroBot Team. Alle Rechte vorbehalten.</sub>
   </p>
