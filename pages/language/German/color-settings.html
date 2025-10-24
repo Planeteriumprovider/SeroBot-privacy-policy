@@ -1,0 +1,315 @@
+<!--DISCLAIMER!!!-->
+
+<!--© Copyright 2025 | planeteriumprovider
+
+Licensed under the Apache License, Version 2.0 (the "License");
+You may use this file only in accordance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by law or agreed to in writing,
+Products distributed under the License are distributed on an "AS IS" basis,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+The specific language for permissions and
+limitations under the License.-->
+
+
+
+<!--© Copyright 2025  |  planeteriumprovider
+
+Lizenziert unter der Apache-Lizenz, Version 2.0 (die „Lizenz“);
+Sie dürfen diese Datei nur in Übereinstimmung mit der Lizenz verwenden.
+Sie können eine Kopie der Lizenz erhalten unter
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Sofern nicht gesetzlich vorgeschrieben oder schriftlich vereinbart,
+Die unter der Lizenz vertriebenen Produkte werden auf einer „AS IS“-Basis vertrieben,
+OHNE GARANTIEN ODER BEDINGUNGEN JEGLICHER ART, weder ausdrücklich noch stillschweigend.
+Die spezifischen Sprachbestimmungen für Berechtigungen und
+Einschränkungen im Rahmen der Lizenz.-->
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Im Bau!] ℹ️ [Name] – SeroBot 🥶</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-color: #f8fafc;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --transition: 0.3s ease;
+      --radius: 12px;
+      --warning: #a41414;
+      --translated: #d0b50b;
+      --inbuilding: #d0b50b;
+    }
+
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+        /* Hamburger Menu */
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      font-size: 22px;
+      border-radius: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background var(--transition);
+      z-index: 10;
+    }
+
+    .menu-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .menu {
+      position: fixed;
+      top: 60px;
+      left: 20px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+      display: none;
+      flex-direction: column;
+      padding: 12px 0;
+      width: 220px;
+      animation: fadeIn 0.3s ease;
+      z-index: 9;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: var(--text-color);
+      padding: 12px 20px;
+      display: block;
+      transition: background var(--transition);
+    }
+
+    .menu a:hover {
+      background: var(--accent-hover);
+    }
+
+    /*Container*/
+    .container {
+      max-width: 900px;
+      width: 90%;
+      margin: 60px auto;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      padding: 30px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin-top: 30px;
+      color: var(--accent);
+    }
+
+    p {
+      line-height: 1.6;
+      margin: 8px 0;
+    }
+
+    .lang-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      border: none;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .lang-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-style: italic;
+      color: #94a3b8;
+    }
+
+    .highlight {
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .warninghighlight {
+      color: var(--warning);
+      font-weight: bold;
+    }
+    .translatedinfo {
+      color: var(--translated);
+      font-weight: bold;
+    }
+    .inbuilding {
+      color: var(--inbuilding);
+      font-weight: bold;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+      .lang-btn {
+        top: 15px;
+        right: 15px;
+        padding: 8px 14px;
+      }
+      /* Home Button */
+    .home-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .home-btn:hover {
+      background: var(--accent-hover);
+    }
+      /*Badges Logik*/
+          .badges {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .badges img {
+      margin: 3px;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 25px; }
+      .lang-btn { top: 15px; right: 15px; padding: 8px 14px; }
+      }
+    }
+  </style>
+</head>
+<body>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <div class="container">
+    <button class="lang-btn" id="toggleLang">🇬🇧 English</button>
+    <div class="badges">
+    <img src="https://img.shields.io/badge/Made%20with-♥️%20by%20Julian-black?style=for-the-badge" alt="Made with Love"/>
+    </div>
+    <!-- 🇩🇪 Deutsch -->
+  <!-- Hamburger Menu Button -->
+  <button class="menu-btn" id="menuBtn">☰</button>
+
+    <!-- Dropdown Menu -->
+  <nav class="menu" id="menu">
+    <a href="index.html">🏠 Startseite</a>
+    <a href="credits.html">🎬 Credits</a>
+    <a href="privacy.html">📜 Privacy Policy</a>
+    <a href="therms.html">🛂 Nutzungsbedingungen</a>
+    <a href="copyright.html">📑 Copyrights</a>
+    <a href="./pages/language/German/color-settings.html">🎨 Color Settings</a>
+    <br>
+    <a href="./pages/language/German/admin-zone.html">⚙️ Admin-Zone</a>
+
+  </nav>
+
+    <div id="de" class="section active">
+      <h1>🎨 Color Settings - SeroBot 🥶</h1>
+      <p><strong>Letzte Aktualisierung:</strong> 24. Oktober 2025  | 7:40 Uhr</p>
+
+<p><span class="inbuilding">HINWEIS: Diese Seite befindet sich gerade im Aufbau und könnte fehlerhaft sein!</span></p>
+<p>
+      </p>
+  <br>
+  <br>
+  <hr>
+  <br>
+    </p>   
+      <footer>
+        🧊 <strong>SeroBot 🥶 • EST 2025</strong><br>
+        „Deine Daten bleiben privat – lokal & sicher.“<br><br>
+                <sub>© 2025 planeteriumprovider. 
+          Apache LICENSE-2.0. Alle Rechte vorbehalten. 🧊 SeroBot Teams.</sub>
+      </footer>
+    </div>
+
+  <script>
+    const toggleBtn = document.getElementById('toggleLang');
+    const deSection = document.getElementById('de');
+    const enSection = document.getElementById('en');
+
+    toggleBtn.addEventListener('click', () => {
+      const isGerman = deSection.classList.contains('active');
+      deSection.classList.toggle('active', !isGerman);
+      enSection.classList.toggle('active', isGerman);
+      toggleBtn.textContent = isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English';
+    });
+    // Hamburger Menu
+    const menuBtn = document.getElementById("menuBtn");
+    const menu = document.getElementById("menu");
+    let open = false;
+
+    menuBtn.addEventListener("click", () => {
+      open = !open;
+      menu.style.display = open ? "flex" : "none";
+    });
+
+    // Schließt das Menü, wenn außerhalb geklickt wird
+    document.addEventListener("click", (e) => {
+      if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+        menu.style.display = "none";
+        open = false;
+      }
+    });
+  </script>
+</body>
+  </html>
