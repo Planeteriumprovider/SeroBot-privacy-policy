@@ -1,0 +1,380 @@
+<!--DISCLAIMER!!!-->
+
+<!--Copyright 2025 | planeteriumprovider
+
+Licensed under the Apache License, Version 2.0 (the "License");
+You may use this file only in accordance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by law or agreed to in writing,
+Products distributed under the License are distributed on an "AS IS" basis,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+The specific language for permissions and
+limitations under the License.-->
+
+
+
+<!--Copyright 2025  |  planeteriumprovider
+
+Lizenziert unter der Apache-Lizenz, Version 2.0 (die „Lizenz“);
+Sie dürfen diese Datei nur in Übereinstimmung mit der Lizenz verwenden.
+Sie können eine Kopie der Lizenz erhalten unter
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Sofern nicht gesetzlich vorgeschrieben oder schriftlich vereinbart,
+Die unter der Lizenz vertriebenen Produkte werden auf einer „AS IS“-Basis vertrieben,
+OHNE GARANTIEN ODER BEDINGUNGEN JEGLICHER ART, weder ausdrücklich noch stillschweigend.
+Die spezifischen Sprachbestimmungen für Berechtigungen und
+Einschränkungen im Rahmen der Lizenz.-->
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🏡 Homepage – SeroBot 🥶</title>
+  <!--<meta name="description" content="Offizielle DSGVO & Privacy Policy von SeroBot – EST 2025 • Eigentümer: Ben • Moderator: Julian">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3209/3209265.png" type="image/png">-->
+  
+  <!-- Open Graph Meta Tags -->
+<meta property="og:title" content="🧊 SeroBot 🥶 – EST • 2025">
+<meta property="og:description" content="SeroBot wurde aus Leidenschaft und Spaß gegründet, um Gemeinschaft und Bindung zu stärken.">
+<meta property="og:image" content="https://planeteriumprovider.github.io/SeroBot/Grafics/linkpreview.png">
+<meta property="og:url" content="https://planeteriumprovider.github.io/SeroBot/Grafics/">
+<meta property="og:type" content="website">
+
+<!-- Optional für Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="🧊 SeroBot 🥶 - EST • 2025">
+<meta name="twitter:description" content="Offizielle Seite von SeroBot – gegründet aus Leidenschaft und Spaß.">
+<meta name="twitter:image" content="https://planeteriumprovider.github.io/SeroBot/Grafics/linkpreview.png">
+  
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-color: #f8fafc;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --transition: 0.3s ease;
+      --radius: 14px;
+      --warning: #ef4444;
+      --translated: #facc15;
+      --rainbow: linear-gradient(
+        90deg,
+        #b80000,
+        #b81f00,
+        #b83d00,
+        #b85c00,
+        #b87a00,
+        #b89900,
+        #b8b800,
+        #99b800,
+        #7ab800,
+        #5cb800,
+        #3db800,
+        #1fb800,
+        #00b800,
+        #00b81f,
+        #00b83d,
+        #00b85c,
+        #00b87a,
+        #00b899,
+        #00b8b8,
+        #0099b8,
+        #007ab8,
+        #005cb8,
+        #003db8,
+        #001fb8,
+        #0000b8,
+        #1f00b8,
+        #3d00b8,
+        #5c00b8,
+        #7a00b8,
+        #9900b8,
+        #b800b8
+      );
+    }
+
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+        /* Hamburger Menu */
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      font-size: 22px;
+      border-radius: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background var(--transition);
+      z-index: 10;
+    }
+
+    .menu-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .menu {
+      position: fixed;
+      top: 60px;
+      left: 20px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+      display: none;
+      flex-direction: column;
+      padding: 12px 0;
+      width: 220px;
+      animation: fadeIn 0.3s ease;
+      z-index: 9;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: var(--text-color);
+      padding: 12px 20px;
+      display: block;
+      transition: background var(--transition);
+    }
+
+    .menu a:hover {
+      background: var(--accent-hover);
+    }
+
+    /*Others*/
+    .container {
+      max-width: 950px;
+      width: 90%;
+      margin: 60px auto;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      padding: 40px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-size: 2em;
+    }
+
+    h2 {
+      margin-top: 30px;
+      color: var(--accent);
+      font-size: 1.4em;
+    }
+
+    p {
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+
+    .lang-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      border: none;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .lang-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-style: italic;
+      color: #94a3b8;
+      font-size: 0.9em;
+    }
+
+    .highlight { color: var(--accent); font-weight: bold; }
+    .warninghighlight { color: var(--warning); font-weight: bold; }
+    .translatedinfo { color: var(--translated); font-weight: bold; }
+
+    .badges {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .badges img {
+      margin: 3px;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 25px; }
+      .lang-btn { top: 15px; right: 15px; padding: 8px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="lang-btn" id="toggleLang">🇬🇧 English</button>
+
+    <div class="badges">
+    <img src="https://img.shields.io/badge/Made%20with-♥️%20by%20Julian-black?style=for-the-badge" alt="Made with Love"/>
+    </div>
+
+    <!-- 🗂 Hamburger-Menu Button -->
+  <button class="menu-btn" id="menuBtn">☰</button>
+
+      <!-- Dropdown Menu -->
+  <nav class="menu" id="menu">
+    <a href="index.html">🏠 Startseite</a>
+    <a href="./pages/language/German/credits.html">🎬 Credits</a>
+    <a href="./pages/language/German/privacy.html">📜 Privacy Policy</a>
+    <a href="./pages/language/German/therms.html">🛂 User Therms</a>
+    <a href="./pages/language/German/copyright.html">📑 Copyrights</a>
+    <a href="./pages/language/German/color-settings.html">🎨 Color Settings</a>
+    <br>
+    <a href="./pages/language/German/admin-zone.html">⚙️ Admin-Zone</a>
+
+  </nav>    
+    <!-- 🇩🇪 Deutsch -->
+    <div id="de" class="section active">
+      <h1>🏡 Homepage – SeroBot 🥶</h1>
+      <p><strong>Letzte Aktualisierung:</strong> 24. Oktober 2025 | 14:30 Uhr</p>
+
+      <h2>💎 Eigentümer</h2>
+      <p><strong>Dev4SeroBot | Ben</strong><br>
+      Gründer, Eigentümer von SeroBot, Developer, Umsetzung & Verantwortlicher für alle Inhalte.</p>
+
+      <h2>🌍 Moderator</h2>
+      <p><strong>Dev4Planeterium | Julian</strong><br>
+      Designer, Zuständiger für Website, Datenschutz, Planung, Marketing, Partnerschaften und Moderation.</p>
+
+      <h2>📩 Kontakt</h2>
+      <p><b>E-Mail:</b> <a href="mailto:datenschutz.serobot@yahoo.com" style="color:var(--accent)">datenschutz.serobot@yahoo.com</a></p>
+
+      <h2>💬 Über das Projekt</h2>
+      <p><strong>SeroBot</strong> wurde aus Leidenschaft und Spaß gegründet – mit dem Ziel, gemeinsame Bindungen zu stärken und eine Plattform für echte Community-Vibes zu schaffen.</p>
+
+      <h2>⚙️ Datenschutz-Hinweis</h2>
+      <p>Diese Policy beschreibt, wie Daten innerhalb des Bots respektvoll verarbeitet werden. Keine Weitergabe, keine Cloud – nur lokale Speicherung.</p>
+
+      <h2>🌐 Jahr der Gründung</h2>
+      <p><strong>2025</strong> – gebaut auf Vertrauen, Respekt und Teamgeist. 🫡</p>
+
+      <h2>💡 Motto</h2>
+      <blockquote>„Wir bauen nicht nur Bots – wir bauen unsere Verbindungen.“ 🤝</blockquote>
+
+      <footer>
+        🧊 <strong>SeroBot 🥶 • EST 2025</strong><br>
+        „Deine Daten bleiben privat – lokal & sicher.“<br><br>
+      <sub>© 2025 planeteriumprovider. 
+     Apache LICENSE-2.0. Alle Rechte vorbehalten. 🧊 SeroBot Teams.</sub>
+      </footer>
+    </div>
+
+    <!-- 🇬🇧 English -->
+    <div id="en" class="section">
+      <h1>🏡 Homepage – SeroBot 🥶</h1>
+      <p><strong>Last Updated:</strong> October 24, 2025 | 14:30 AM</p>
+
+      <h2>💎 Owner</h2>
+      <p><strong>Dev4SeroBot | Ben</strong><br>
+      Founder, Owner, Developer, responsible for all content and implementation.</p>
+
+      <h2>🌍 Moderator</h2>
+      <p><strong>Dev4Planeterium | Julian</strong><br>
+      Designer, responsible for website, privacy, planning, marketing, partnerships, and moderation.</p>
+
+      <h2>📩 Contact</h2>
+      <p><b>Email:</b> <a href="mailto:datenschutz.serobot@yahoo.com" style="color:var(--accent)">datenschutz.serobot@yahoo.com</a></p>
+
+      <h2>💬 About the Project</h2>
+      <p><strong>SeroBot</strong> was founded out of passion and fun — to strengthen bonds and build a platform full of community vibes and creative energy.</p>
+
+      <h2>⚙️ Privacy Notice</h2>
+      <p>This policy explains how data is respectfully handled within the bot. No sharing, no cloud — only local storage.</p>
+
+      <h2>🌐 Year of Foundation</h2>
+      <p><strong>2025</strong> – built on trust, respect, and teamwork. 🫡</p>
+
+      <h2>💡 Motto</h2>
+      <blockquote>“We don’t just build bots – we build our connections.” 🤝</blockquote>
+
+      <p><h5><span class="translatedinfo">ℹ️ Translated by OpenAI</span></h5></p>
+
+      <footer>
+        🧊 <strong>SeroBot 🥶 • EST 2025</strong><br>
+        “Your data stays private – local & secure.”<br><br>
+<sub>© 2025 planeteriumprovider.  
+Apache LICENSE-2.0. All rights reserved. 🧊 SeroBot Teams.</sub>    </footer>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    //Translate English/Deutsch Button
+    const toggleBtn = document.getElementById('toggleLang');
+    const deSection = document.getElementById('de');
+    const enSection = document.getElementById('en');
+
+    toggleBtn.addEventListener('click', () => {
+      const isGerman = deSection.classList.contains('active');
+      deSection.classList.toggle('active', !isGerman);
+      enSection.classList.toggle('active', isGerman);
+      toggleBtn.textContent = isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English';
+    });
+    //Hamburger Menu
+    const menuBtn = document.getElementById("menuBtn");
+    const menu = document.getElementById("menu");
+    let open = false;
+
+    menuBtn.addEventListener("click", () => {
+      open = !open;
+      menu.style.display = open ? "flex" : "none";
+    });
+
+    // Schließt das Menü, wenn außerhalb geklickt wird
+    document.addEventListener("click", (e) => {
+      if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+        menu.style.display = "none";
+        open = false;
+      }
+    });
+  </script>
+</body>
+      </html>
