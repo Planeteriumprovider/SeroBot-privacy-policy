@@ -320,6 +320,8 @@ Einschränkungen im Rahmen der Lizenz.-->
     
     <!-- 🇩🇪 Deutsch -->
     <div id="de" class="section active">
+		<br><br><br>
+		
       <div class="blockboxrainbow">
         <p>🚧 <strong>Halt Stop!</strong> Es scheint so, als ob diese Seite sich derzeit im Bau befindet!</p>
       </div>
@@ -330,6 +332,7 @@ Einschränkungen im Rahmen der Lizenz.-->
      <br><br>
       <hr>
       <p>
+		  <br>
 <!--DISCLAIMER!!!-->
 <b>© Copyright 2025 | planeteriumprovider</b>
 <br><br>
@@ -362,7 +365,7 @@ Einschränkungen im Rahmen der Lizenz.<br><br>
 </p>
       <p>Vielleicht besuchst du einfach nochmal unsere Startseite?</p>
       <br>
-
+<br><br>
       <footer>
         🧊 <strong>SeroBot 🥶 • EST 2025</strong><br>
         „Deine Daten bleiben privat – lokal & sicher.“<br><br>
@@ -372,7 +375,9 @@ Einschränkungen im Rahmen der Lizenz.<br><br>
     </div>
   </div>
 
-  <script>
+   <script>
+	  
+    //Translate English/Deutsch Button
     const toggleBtn = document.getElementById('toggleLang');
     const deSection = document.getElementById('de');
     const enSection = document.getElementById('en');
@@ -381,7 +386,25 @@ Einschränkungen im Rahmen der Lizenz.<br><br>
       const isGerman = deSection.classList.contains('active');
       deSection.classList.toggle('active', !isGerman);
       enSection.classList.toggle('active', isGerman);
-      toggleBtn.textContent = isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English';
+      toggleBtn.textContent = isGerman ? 'Deutsch' : 'English';
+    });
+	  
+    //Hamburger Menu
+    const menuBtn = document.getElementById("menuBtn");
+    const menu = document.getElementById("menu");
+    let open = false;
+
+    menuBtn.addEventListener("click", () => {
+      open = !open;
+      menu.style.display = open ? "flex" : "none";
+    });
+
+    // Schließt das Menü, wenn außerhalb geklickt wird
+    document.addEventListener("click", (e) => {
+      if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+        menu.style.display = "none";
+        open = false;
+      }
     });
   </script>
 </body>
