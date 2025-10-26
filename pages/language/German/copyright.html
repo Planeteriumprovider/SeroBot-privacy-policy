@@ -95,6 +95,55 @@ Einschränkungen im Rahmen der Lizenz.-->
       min-height: 100vh;
     }
 
+
+	  /* Hamburger Menu */
+    .menu-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      font-size: 22px;
+      border-radius: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background var(--transition);
+      z-index: 10;
+    }
+
+    .menu-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .menu {
+      position: fixed;
+      top: 60px;
+      left: 20px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.3);
+      display: none;
+      flex-direction: column;
+      padding: 12px 0;
+      width: 220px;
+      animation: fadeIn 0.3s ease;
+      z-index: 9;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: var(--text-color);
+      padding: 12px 20px;
+      display: block;
+      transition: background var(--transition);
+    }
+
+    .menu a:hover {
+      background: var(--accent-hover);
+    }
+
+/*Others*/
     .container {
       max-width: 900px;
       width: 90%;
@@ -223,6 +272,7 @@ Einschränkungen im Rahmen der Lizenz.-->
   </style>
 </head>
 <body>
+	
    <div class="container">
     <button class="lang-btn" id="toggleLang"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 19l3.5-9l3.5 9m-6.125-2h5.25M3 7h7m0 0h2m-2 0c0 1.63-.793 3.926-2.239 5.655M7.5 6.818V5m.261 7.655C6.79 13.82 5.521 14.725 4 15m3.761-2.345L5 10m2.761 2.655L10.2 15"/></svg> English</button>
 
