@@ -370,16 +370,13 @@ Dennoch warnen wir euch, das diese Seite einige Fehler enthält!</span>
   </div>
 
   <script>
-    const toggleBtn = document.getElementById('toggleLang');
-    const deSection = document.getElementById('de');
-    const enSection = document.getElementById('en');
-
-    toggleBtn.addEventListener('click', () => {
-      const isGerman = deSection.classList.contains('active');
-      deSection.classList.toggle('active', !isGerman);
-      enSection.classList.toggle('active', isGerman);
-      toggleBtn.textContent = isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English';
-    });
+  // Automatische Weiterleitung basierend auf der Browser-Sprache
+  const userLang = navigator.language || navigator.userLanguage;
+  if (userLang.startsWith('de')) {
+    window.location.href = "./pages/language/German/admin-zone.html";
+  } else {
+    window.location.href = "./pages/language/English/admin-zone.html";
+  }
     // Hamburger Menu
     const menuBtn = document.getElementById("menuBtn");
     const menu = document.getElementById("menu");
