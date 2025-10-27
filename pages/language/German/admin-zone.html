@@ -373,9 +373,9 @@ Dennoch warnen wir euch, das diese Seite einige Fehler enthält!</span>
   // Automatische Weiterleitung basierend auf der Browser-Sprache
   const userLang = navigator.language || navigator.userLanguage;
   if (userLang.startsWith('de')) {
-    window.location.href = "./pages/language/German/admin-zone.html";
+    window.location.href = "./admin-zone.html";
   } else {
-    window.location.href = "./pages/language/English/admin-zone.html";
+    window.location.href = "../English/admin-zone.html";
   }
     // Hamburger Menu
     const menuBtn = document.getElementById("menuBtn");
