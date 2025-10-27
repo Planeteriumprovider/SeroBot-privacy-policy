@@ -288,7 +288,11 @@ Einschränkungen im Rahmen der Lizenz.-->
  
   
   <div class="container">
-    <button class="lang-btn" id="toggleLang"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 19l3.5-9l3.5 9m-6.125-2h5.25M3 7h7m0 0h2m-2 0c0 1.63-.793 3.926-2.239 5.655M7.5 6.818V5m.261 7.655C6.79 13.82 5.521 14.725 4 15m3.761-2.345L5 10m2.761 2.655L10.2 15"/></svg> English</button>
+<!-- In ./pages/language/German/admin-zone.html -->
+<button class="lang-btn" onclick="window.location.href='../English/admin-zone.html'">
+  🇬🇧 English
+</button>
+	  <!--<button class="lang-btn" id="toggleLang"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 19l3.5-9l3.5 9m-6.125-2h5.25M3 7h7m0 0h2m-2 0c0 1.63-.793 3.926-2.239 5.655M7.5 6.818V5m.261 7.655C6.79 13.82 5.521 14.725 4 15m3.761-2.345L5 10m2.761 2.655L10.2 15"/></svg> English</button>-->
 
     <div class="badges">
     <img src="https://img.shields.io/badge/Made%20with-♥️%20by%20Julian-black?style=for-the-badge" alt="Made with Love"/>
@@ -371,12 +375,12 @@ Dennoch warnen wir euch, das diese Seite einige Fehler enthält!</span>
 
   <script>
   // Automatische Weiterleitung basierend auf der Browser-Sprache
-  const userLang = navigator.language || navigator.userLanguage;
-  if (userLang.startsWith('de')) {
-    window.location.href = "./admin-zone.html";
-  } else {
-    window.location.href = "../English/admin-zone.html";
-  }
+  //const userLang = navigator.language || navigator.userLanguage;
+  //if (userLang.startsWith('de')) {
+  //  window.location.href = "./admin-zone.html";
+ // } else {
+ //   window.location.href = "../English/admin-zone.html";
+//  }
     // Hamburger Menu
     const menuBtn = document.getElementById("menuBtn");
     const menu = document.getElementById("menu");
