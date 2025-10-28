@@ -506,23 +506,38 @@ window.showStartMenu = function() {
     window.lastMode = false;
     calledFromGameOver = false;
 }
+
 window.showColorSettings = function(fromGameOver = false) {
-    startScreen.style.display = 'none';
-    gameOverScreen.style.display = 'none';
-    gameContainer.style.display = 'none';
-    colorSettingsScreen.style.display = 'flex';
-    calledFromGameOver = fromGameOver;
-    window.updateColorMenuButtons();
-    window.renderThemeButtons();
-}
-window.backToGame = function() {
-    colorSettingsScreen.style.display = 'none';
-    if (lastMode !== false) {
-        window.startGame(lastMode);
-    } else {
-        window.showStartMenu();
+    if (startScreen) {
+        startScreen.style.display = "none";
     }
-}
+    if (gameOverScreen) {
+        gameOverScreen.style.display = 'none';
+    }
+    if (gameContainer) {
+        gameContainer.style.display = 'none';
+    }
+    if (colorSettingsScreen) {
+        colorSettingsScreen.style.display = 'flex';
+    }
+
+    calledFromGameOver = fromGameOver;
+    window.updateColorMenuButtons?.();
+    window.renderThemeButtons?.();
+};
+
+window.backToGame = function() {
+    if (colorSettingsScreen) {
+        colorSettingsScreen.style.display = 'none';
+    }
+
+    if (lastMode !== false) {
+        window.startGame?.(lastMode);
+    } else {
+        window.showStartMenu?.();
+    }
+};
+
 window.renderThemeButtons = function() {
     themeList.innerHTML = '';
     const themeCount = availableThemes.length;
