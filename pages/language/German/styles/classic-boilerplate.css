@@ -71,6 +71,8 @@
       --radius: 14px;
       --warning: #ef4444;
       --translated: #facc15;
+	  --inbuilding: #d0b50b;
+      --info: #f8fafc;
 	  --background-darkmode-color: #ffffff;
       --text-darkmode-color: #000000;
       --rainbow: linear-gradient(
@@ -270,9 +272,25 @@ body {
     }
     
 
-    .highlight { color: var(--accent); font-weight: bold; }
-    .warninghighlight { color: var(--warning); font-weight: bold; }
-    .translatedinfo { color: var(--translated); font-weight: bold; }
+ .highlight {
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .warninghighlight {
+      color: var(--warning);
+      font-weight: bold;
+    }
+
+    .translatedinfo {
+      color: var(--translated);
+      font-weight: bold;
+    }
+
+    .inbuilding {
+      color: var(--inbuilding);
+      font-weight: bold;
+    }
 
     .badges {
       text-align: center;
