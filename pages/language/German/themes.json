@@ -1,0 +1,101 @@
+
+[
+    {
+        "filename": "default",
+        "name": "Original Neon"
+    },
+    {
+        "filename": "ice-blue",
+        "name": "Ice Blue Frost"
+    },
+    {
+        "filename": "fire-red",
+        "name": "Fire Red Danger"
+    },
+    {
+        "filename": "forest-green",
+        "name": "Forest Green Stealth"
+    },
+    {
+        "filename": "monochromatic-red",
+        "name": "Monochrome red"
+    },
+    {
+        "filename": "black-x-white",
+        "name": "Monochrome"
+    },
+    {
+        "filename": "white-x-black",
+        "name": "Inverted Monochrome"
+    },
+    {
+        "filename": "solar-flare",
+        "name": "Solar Flare Orange"
+    },
+    {
+        "filename": "cyberpunk",
+        "name": "Cyberpunk Matrix"
+    },
+    {
+        "filename": "deep-ocean",
+        "name": "Deep Ocean Blue"
+    },
+    {
+        "filename": "retro-pink",
+        "name": "Retro 80s Pink"
+    },
+    {
+        "filename": "gold-rush",
+        "name": "Gold Rush Luxury"
+    },
+    {
+        "filename": "desert-gold-luxury",
+        "name": "Desert Gold Luxury"
+    },
+    {
+        "filename": "desert-sand",
+        "name": "Desert Sand Warmth"
+    },
+    {
+        "filename": "mint-chocolate",
+        "name": "Mint Chocolate Dream"
+    },
+    {
+        "filename": "toxic-waste",
+        "name": "Toxic Waste Slime"
+    },
+    {
+        "filename": "grayscale-contrast",
+        "name": "Grayscale High Contrast"
+    },
+    {
+        "filename": "vaporwave",
+        "name": "Vaporwave Sunset"
+    },
+    {
+        "filename": "steampunk",
+        "name": "Steampunk Kupfer"
+    },
+    {
+        "filename": "hacker-terminal",
+        "name": "Hacker Terminal Green"
+    },
+    {
+        "filename": "high-vis",
+        "name": "High-Vis warning"
+    },
+    {
+        "filename": "crimson-wasteland",
+        "name": "crimson Wasteland"
+    },
+    {
+        "filename": "reggae",
+        "name": "Reggae"
+    },
+    {
+        "filename": "color-edit",
+        "name": "TELL ME CHANGES"
+    }
+]
+
+
