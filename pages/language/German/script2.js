@@ -498,14 +498,24 @@ window.gameOver = function(finalScore, collectedCoins, mode) {
     gameOverScreen.style.display = 'flex';
 }
 window.showStartMenu = function() {
-    gameOverScreen.style.display = 'none';
-    gameContainer.style.display = 'none';
-    colorSettingsScreen.style.display = 'none';
-    startScreen.style.display = 'block';
+    if (gameOverScreen) {
+        gameOverScreen.style.display = 'none';
+    }
+    if (gameContainer) {
+        gameContainer.style.display = 'none';
+    }
+    if (colorSettingsScreen) {
+        colorSettingsScreen.style.display = 'none';
+    }
+    if (startScreen) {
+        startScreen.style.display = 'block';
+    }
+
     lastMode = false;
     window.lastMode = false;
     calledFromGameOver = false;
-}
+};
+
 
 window.showColorSettings = function(fromGameOver = false) {
     if (startScreen) {
