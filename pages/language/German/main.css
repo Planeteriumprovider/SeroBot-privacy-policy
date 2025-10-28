@@ -1,0 +1,154 @@
+/* ACHTUNG HAFTUNGSAUSSCHLUSS! */
+
+/* Copyright 2025 | planeteriumprovider
+
+/* Licensed under the Apache License, Version 2.0 (the "License");
+/* You may use this file only in accordance with the License.
+/* You may obtain a copy of the License at
+/* 
+/* http://www.apache.org/licenses/LICENSE-2.0
+/* 
+/* Unless required by law or agreed to in writing,
+/* Products distributed under the License are distributed on an "AS IS" basis,
+/* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+/* The specific language for permissions and
+/* limitations under the License.
+/* 
+/*    |---------------------------------------------------------------------------------------------------------------------------------|
+/*    |                                                                                                                                 |
+/*    |             ACHTUNG! DIE OFFIZIELLEN RECHTE BESITZT XOIS UND DIE WEITERVERWENDUNG IST STRENGSTENS VERBOTEN!                     |
+/*    |                        ES MUSS ERST EINE OFFIZIELLE GENEHMIGUNG VON XOIS EINGWHOLT WERDEN!!!                                    |
+/*    |                                                                                                                                 |   
+/*    |---------------------------------------------------------------------------------------------------------------------------------|
+/*      |                                                                                                                             |
+/*        |                   @planeteriumprovider hat die Berechtigung von XOIS für die Verwendung erhalten!                       |
+/*      |                                                                                                                             |
+/*        |                                              EIGENTÜMER VOM CODE: XOIS                                                  |
+/*      |                                                                                                                             |
+/*    |---------------------------------------------------------------------------------------------------------------------------------|
+/*    | ---  WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF  --- |
+/*    |                                                                                                                                 |
+/*    | Instagram :  https://www.instagram.com/hakaidev?igsh=cmthM2cxYjJ5OWwy                                                           |
+/*    | Instagram :  https://www.instagram.com/meepcoin?igsh=MTRtYWZuaWV5eTFlZQ==                                                       |
+/*    | Instagram :  https://www.instagram.com/metha_connection?igsh=OWZsOTE5OWJibXN4                                                   |
+/*    | Whatsapp  :  https://whatsapp.com/channel/0029VaCABrQ0AgWFWiCXq13W                                                              |
+/*    | Whatsapp  :  https://whatsapp.com/channel/0029VaN2GYGCMY0Gr2mTFW2p                                                              |
+/*    | Youtube   :  https://youtube.com/@HakaiDEVxMETHA?si=jMuzOjq8cvVdm8ed                                                            |
+/*    | Discord   :  https://discord.gg/XW4gJQPf                                                                                        |
+/*    | Homepage  :  https://hakaidev-x-metha.org                                                                                       |
+/*    | Email     :  hakaidevxmethahelp@gmail.com                                                                                       |
+/*    |                                                                                                                                 |
+/*    |---------------------------------------------------------------------------------------------------------------------------------|
+/* 
+/* Copyright 2025  |  planeteriumprovider
+/* 
+/* Lizenziert unter der Apache-Lizenz, Version 2.0 (die „Lizenz“);
+/* Sie dürfen diese Datei nur in Übereinstimmung mit der Lizenz verwenden.
+/* Sie können eine Kopie der Lizenz erhalten unter
+/* 
+/* http://www.apache.org/licenses/LICENSE-2.0
+/* 
+/* Sofern nicht gesetzlich vorgeschrieben oder schriftlich vereinbart,
+/* Die unter der Lizenz vertriebenen Produkte werden auf einer „AS IS“-Basis vertrieben,
+/* OHNE GARANTIEN ODER BEDINGUNGEN JEGLICHER ART, weder ausdrücklich noch stillschweigend.
+/* Die spezifischen Sprachbestimmungen für Berechtigungen und
+/* Einschränkungen im Rahmen der Lizenz. */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--background);
+    color: var(--light-text);
+}
+#start-screen {
+    text-align: center;
+    padding: 20px;
+}
+#start-screen h1 {
+    color: var(--primary-neon);
+    text-shadow: 0 0 20px var(--primary-neon), 0 0 30px var(--primary-neon);
+}
+#start-screen h2, #start-screen p {
+    color: var(--secondary-neon);
+    text-shadow: 0 0 5px var(--secondary-neon);
+}
+#start-screen button {
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border: 2px solid var(--primary-neon);
+    border-radius: 5px;
+    box-shadow: 0 0 15px var(--primary-neon);
+    transition: background-color 0.2s, box-shadow 0.2s;
+    min-width: 250px;
+    background-color: var(--primary-dark);
+    color: var(--secondary-neon);
+    border-color: var(--primary-neon);
+}
+#start-screen button:hover {
+    background-color: var(--primary-neon);
+    color: var(--dark-text);
+    box-shadow: 0 0 30px var(--primary-neon);
+}
+.button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap; 
+}
+.button-group button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    background-color: var(--primary-dark);
+    color: var(--secondary-neon);
+    border: 2px solid var(--primary-neon);
+    box-shadow: 0 0 10px var(--primary-neon);
+    min-width: 100px; 
+}
+.button-group button:hover {
+    background-color: var(--primary-neon);
+    color: var(--dark-text);
+    box-shadow: 0 0 20px var(--primary-neon);
+}
+.neon-glowing-button {
+    background-color: var(--secondary-dark) !important;
+    color: var(--dark-text) !important;
+    border: 2px solid var(--secondary-neon) !important;
+    box-shadow: 0 0 15px var(--secondary-neon) !important;
+}
+.neon-glowing-button:hover {
+    background-color: var(--secondary-neon) !important;
+    color: var(--dark-text) !important;
+    box-shadow: 0 0 30px var(--secondary-neon) !important;
+}
+
+
+
+
+
