@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>buu Readline & Colors - Quelltext</title>
+  <style>
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#0b1020; color:#e6eef8; margin:0; padding:24px; line-height:1.45; }
+    header { margin-bottom:18px; }
+    h1 { margin:0 0 6px 0; font-size:20px; color:#fff; }
+    p.lead { margin:0; color:#bcd1ff; font-size:13px; }
+    section { margin-top:20px; }
+    h2 { font-size:16px; margin-bottom:8px; color:#cfe8ff; border-bottom:1px solid rgba(255,255,255,0.04); padding-bottom:6px; }
+    .file-meta { font-size:12px; color:#99b0d9; margin-bottom:6px; }
+    pre { background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); border-radius:8px; padding:12px; overflow:auto; color:#e6eef8; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace; font-size:13px; margin:0; box-shadow: 0 6px 20px rgba(2,6,23,0.6); }
+    code { white-space:pre; display:block; }
+    .line { display:block; }
+    .ln { display:inline-block; width:40px; text-align:right; padding-right:12px; margin-right:12px; color:rgba(255,255,255,0.25); user-select: none; }
+    .file-actions { margin-top:8px; font-size:12px; color:#9fb7e6; }
+    .note { font-size:12px; color:#a0b8d9; margin-top:8px; }
+    /* einfache token-farbgebung */
+    .kw { color:#ffd5a3; } /* keywords/const/let/function */
+    .str { color:#b4f0c0; } /* strings */
+    .num { color:#ffb3c6; } /* numbers */
+    .com { color:#7b8faa; } /* comments */
+    .id { color:#bcd1ff; }  /* identifiers */
+  </style>
+</head>
+<body>
+  <header>
+    <h1>buuReadline & buuColors — Quelltext Ansicht</h1>
+    <p class="lead">Drei JavaScript-Module wurden in dieser Seite zusammengeführt: buuColorApiBuilder.js, buuReadlineApi.js und ansiAbused.js. Unten sind die Originalquellen vollständig eingebettet.</p>
+  </header>
+
+  <section>
+    <h2>./lib/buuColors/buuColorApiBuilder.js</h2>
+    <div class="file-meta">Originaldatei: buuColorApiBuilder.js</div>
+    <pre><code>
+<span class="kw">const</span> { usingAnsi, HonneybuuModzColorConfig, RESET, parseColorInput } = require('./ansiAbused');
+<span class="kw">const</span> buuColorSystem = {};
+<span class="kw">const</span> functionCache = <span class="kw">new</span> Map();
+<span class="kw">const</span> toSnakeCase = (str) =&gt; str.replace(/([A-Z])/g, '_$1').toLowerCase();
+<span class="kw">const</span> additionalStyles = ['bold', 'dim', 'italic', 'underline', 'overline', 'inverse', 'hidden', 'strikethrough', 'reset'];
+<span class="kw">const</span> getCacheKey = (type, params) =&gt; `${type}_${JSON.stringify(params)}`;
+
+<span class="kw">const</span> attachBgMethods = (chainableObject, fgColorParam, styleApplied = <span class="kw">null</span>, trueBuuColorFgStartParam = <span class="kw">null</span>, trueBuuColorFgEndParam = <span class="kw">null</span>) =&gt; {
+  <span class="kw">const</span> bgMethodCache = <span class="kw">new</span> Map();
+  Object.keys(HonneybuuModzColorConfig).forEach(bgColorName =&gt; {
+    <span class="kw">const</span> methodKey = `bg_${toSnakeCase(bgColorName)}`;
+    Object.defineProperty(chainableObject, methodKey, {
+      get() {
+        if (!bgMethodCache.has(methodKey)) {
+          <span class="kw">const</span> func = (text) =&gt; usingAnsi(text, {
+            fgColor: fgColorParam,
+            bgColor: bgColorName,
+            style: styleApplied,
+            trueBuuColorFgStart: trueBuuColorFgStartParam,
+            trueBuuColorFgEnd: trueBuuColorFgEndParam,
+            resetStyle: <span class="kw">true</span>
+          });
+          bgMethodCache.set(methodKey, func);
+        }
+        return bgMethodCache.get(methodKey);
+      },
+      configurable: <span class="kw">true</span>
+    });
+  });
+
+  Object.defineProperty(chainableObject, 'bgRgb', {
+    get() {
+      if (!bgMethodCache.has('bgRgb')) {
+        <span class="kw">const</span> func = (r, g, b, text) =&gt; usingAnsi(text, {
+          fgColor: fgColorParam,
+          bgColor: [r, g, b],
+          style: styleApplied,
+          trueBuuColorFgStart: trueBuuColorFgStartParam,
+          trueBuuColorFgEnd: trueBuuColorFgEndParam,
+          resetStyle: <span class="kw">true</span>
+        });
+        bgMethodCache.set('bgRgb', func);
+      }
+      return bgMethodCache.get('bgRgb');
+    },
+    configurable: <span class="kw">true</span>
+  });
+
+  Object.keys(HonneybuuModzColorConfig).forEach(bgStartTrueBuuColorName =&gt; {
+    Object.keys(HonneybuuModzColorConfig).forEach(bgEndTrueBuuColorName =&gt; {
+      if (bgStartTrueBuuColorName === bgEndTrueBuuColorName) return;
+      <span class="kw">const</span> gradientBgBaseName = `gradientBg_${toSnakeCase(bgStartTrueBuuColorName)}2${toSnakeCase(bgEndTrueBuuColorName)}`;
+      Object.defineProperty(chainableObject, gradientBgBaseName, {
+        get() {
+          if (!bgMethodCache.has(gradientBgBaseName)) {
+            <span class="kw">const</span> func = (text) =&gt; usingAnsi(text, {
+              fgColor: fgColorParam,
+              trueBuuColorFgStart: trueBuuColorFgStartParam,
+              trueBuuColorFgEnd: trueBuuColorFgEndParam,
+              trueBuuColorBgStart: parseColorInput(bgStartTrueBuuColorName),
+              trueBuuColorBgEnd: parseColorInput(bgEndTrueBuuColorName),
+              style: styleApplied,
+              resetStyle: <span class="kw">true</span>
+            });
+            bgMethodCache.set(gradientBgBaseName, func);
+          }
+          return bgMethodCache.get(gradientBgBaseName);
+        },
+        configurable: <span class="kw">true</span>
+      });
+    });
+  });
+
+  Object.defineProperty(chainableObject, 'gradientBgRgb', {
+    get() {
+      if (!bgMethodCache.has('gradientBgRgb')) {
+        <span class="kw">const</span> func = (r1, g1, b1, r2, g2, b2, text) =&gt; usingAnsi(text, {
+          fgColor: fgColorParam,
+          trueBuuColorFgStart: trueBuuColorFgStartParam,
+          trueBuuColorFgEnd: trueBuuColorFgEndParam,
+          trueBuuColorBgStart: [r1, g1, b1],
+          trueBuuColorBgEnd: [r2, g2, b2],
+          style: styleApplied,
+          resetStyle: <span class="kw">true</span>
+        });
+        bgMethodCache.set('gradientBgRgb', func);
+      }
+      return bgMethodCache.get('gradientBgRgb');
+    },
+    configurable: <span class="kw">true</span>
+  });
+};
+
+Object.keys(HonneybuuModzColorConfig).forEach(colorName =&gt; {
+  <span class="kw">const</span> cmdName = `cmd${colorName.charAt(0).toUpperCase() + colorName.slice(1)}`;
+  <span class="kw">const</span> createBaseNamedCmd = () =&gt; {
+    <span class="kw">const</span> baseCmdFunction = (text) =&gt; usingAnsi(text, { fgColor: colorName });
+    attachBgMethods(baseCmdFunction, colorName);
+    return baseCmdFunction;
+  };
+  Object.defineProperty(buuColorSystem, cmdName, {
+    get() {
+      <span class="kw">const</span> key = getCacheKey('fg', [colorName]);
+      if (!functionCache.has(key)) {
+        functionCache.set(key, createBaseNamedCmd());
+      }
+      return functionCache.get(key);
+    },
+    configurable: <span class="kw">true</span>
+  });
+
+  additionalStyles.forEach(style =&gt; {
+    <span class="kw">const</span> styleCmdName = `${cmdName}${style.charAt(0).toUpperCase() + style.slice(1)}`;
+    <span class="kw">const</span> createStyledNamedCmd = () =&gt; {
+      <span class="kw">const</span> styleFunction = (text) =&gt; usingAnsi(text, { fgColor: colorName, style: style });
+      attachBgMethods(styleFunction, colorName, style);
+      return styleFunction;
+    };
+    Object.defineProperty(buuColorSystem, styleCmdName, {
+      get() {
+        <span class="kw">const</span> key = getCacheKey('fg_styled', [colorName, style]);
+        if (!functionCache.has(key)) {
+          functionCache.set(key, createStyledNamedCmd());
+        }
+        return functionCache.get(key);
+      },
+      configurable: <span class="kw">true</span>
+    });
+  });
+});
+
+Object.keys(HonneybuuModzColorConfig).forEach(startColorName =&gt; {
+  Object.keys(HonneybuuModzColorConfig).forEach(endColorName =&gt; {
+    if (startColorName === endColorName) return;
+    <span class="kw">const</span> gradientBaseName = `gradientCmd_${toSnakeCase(startColorName)}2${toSnakeCase(endColorName)}`;
+    <span class="kw">const</span> createBaseGradientCmd = () =&gt; {
+      <span class="kw">const</span> baseGradientFunc = (text) =&gt; usingAnsi(text, { 
+        trueBuuColorFgStart: parseColorInput(startColorName), 
+        trueBuuColorFgEnd: parseColorInput(endColorName) 
+      });
+      attachBgMethods(baseGradientFunc, <span class="kw">null</span>, <span class="kw">null</span>, parseColorInput(startColorName), parseColorInput(endColorName));
+      return baseGradientFunc;
+    };
+    Object.defineProperty(buuColorSystem, gradientBaseName, {
+      get() {
+        <span class="kw">const</span> key = getCacheKey('gradient_fg', [startColorName, endColorName]);
+        if (!functionCache.has(key)) {
+          functionCache.set(key, createBaseGradientCmd());
+        }
+        return functionCache.get(key);
+      },
+      configurable: <span class="kw">true</span>
+    });
+
+    additionalStyles.forEach(style =&gt; {
+      <span class="kw">const</span> styleGradientCmdName = `${gradientBaseName}${style.charAt(0).toUpperCase() + style.slice(1)}`;
+      <span class="kw">const</span> createStyledGradientCmd = () =&gt; {
+        <span class="kw">const</span> styleGradientFunc = (text) =&gt; usingAnsi(text, { 
+          trueBuuColorFgStart: parseColorInput(startColorName), 
+          trueBuuColorFgEnd: parseColorInput(endColorName), 
+          style: style 
+        });
+        attachBgMethods(styleGradientFunc, <span class="kw">null</span>, style, parseColorInput(startColorName), parseColorInput(endColorName));
+        return styleGradientFunc;
+      };
+      Object.defineProperty(buuColorSystem, styleGradientCmdName, {
+        get() {
+          <span class="kw">const</span> key = getCacheKey('gradient_fg_styled', [startColorName, endColorName, style]);
+          if (!functionCache.has(key)) {
+            functionCache.set(key, createStyledGradientCmd());
+          }
+          return functionCache.get(key);
+        },
+        configurable: <span class="kw">true</span>
+      });
+    });
+  });
+});
+
+buuColorSystem.cmdRgb = (...args) =&gt; {
+  <span class="kw">const</span> text = typeof args[args.length - 1] === 'string' ? args.pop() : <span class="kw">undefined</span>;
+  <span class="kw">const</span> [r, g, b] = args;
+  if (text !== <span class="kw">undefined</span>) {
+    return usingAnsi(text, { fgColor: [r, g, b] });
+  }
+  <span class="kw">const</span> key = getCacheKey('rgb_fg', [r, g, b]);
+  if (!functionCache.has(key)) {
+    <span class="kw">const</span> chainable = (txt) =&gt; usingAnsi(txt, { fgColor: [r, g, b] });
+    attachBgMethods(chainable, [r, g, b]);
+    functionCache.set(key, chainable);
+  }
+  return functionCache.get(key);
+};
+
+additionalStyles.forEach(style =&gt; {
+  <span class="kw">const</span> styleCmdName = `cmdRgb${style.charAt(0).toUpperCase() + style.slice(1)}`;
+  buuColorSystem[styleCmdName] = (...args) =&gt; {
+    <span class="kw">const</span> text = typeof args[args.length - 1] === 'string' ? args.pop() : <span class="kw">undefined</span>;
+    <span class="kw">const</span> [r, g, b] = args;
+    if (text !== <span class="kw">undefined</span>) {
+      return usingAnsi(text, { fgColor: [r, g, b], style: style });
+    }
+    <span class="kw">const</span> key = getCacheKey('rgb_fg_styled', [r, g, b, style]);
+    if (!functionCache.has(key)) {
+      <span class="kw">const</span> chainable = (txt) =&gt; usingAnsi(txt, { fgColor: [r, g, b], style: style });
+      attachBgMethods(chainable, [r, g, b], style);
+      functionCache.set(key, chainable);
+    }
+    return functionCache.get(key);
+  };
+});
+
+buuColorSystem.gradientCmdRgb = (...args) =&gt; {
+  <span class="kw">const</span> text = typeof args[args.length - 1] === 'string' ? args.pop() : <span class="kw">undefined</span>;
+  <span class="kw">const</span> [r1, g1, b1, r2, g2, b2] = args;
+  if (text !== <span class="kw">undefined</span>) {
+    return usingAnsi(text, { trueBuuColorFgStart: [r1, g1, b1], trueBuuColorFgEnd: [r2, g2, b2] });
+  }
+  <span class="kw">const</span> key = getCacheKey('rgb_gradient_fg', [r1, g1, b1, r2, g2, b2]);
+  if (!functionCache.has(key)) {
+    <span class="kw">const</span> chainable = (txt) =&gt; usingAnsi(txt, { trueBuuColorFgStart: [r1, g1, b1], trueBuuColorFgEnd: [r2, g2, b2] });
+    attachBgMethods(chainable, <span class="kw">null</span>, <span class="kw">null</span>, [r1, g1, b1], [r2, g2, b2]);
+    functionCache.set(key, chainable);
+  }
+  return functionCache.get(key);
+};
+
+additionalStyles.forEach(style =&gt; {
+  <span class="kw">const</span> styleGradientCmdName = `gradientCmdRgb${style.charAt(0).toUpperCase() + style.slice(1)}`;
+  buuColorSystem[styleGradientCmdName] = (...args) =&gt; {
+    <span class="kw">const</span> text = typeof args[args.length - 1] === 'string' ? args.pop() : <span class="kw">undefined</span>;
+    <span class="kw">const</span> [r1, g1, b1, r2, g2, b2] = args;
+    if (text !== <span class="kw">undefined</span>) {
+      return usingAnsi(text, { trueBuuColorFgStart: [r1, g1, b1], trueBuuColorFgEnd: [r2, g2, b2], style: style });
+    }
+    <span class="kw">const</span> key = getCacheKey('rgb_gradient_fg_styled', [r1, g1, b1, r2, g2, b2, style]);
+    if (!functionCache.has(key)) {
+      <span class="kw">const</span> chainable = (txt) =&gt; usingAnsi(txt, { trueBuuColorFgStart: [r1, g1, b1], trueBuuColorFgEnd: [r2, g2, b2], style: style });
+      attachBgMethods(chainable, <span class="kw">null</span>, style, [r1, g1, b1], [r2, g2, b2]);
+      functionCache.set(key, chainable);
+    }
+    return functionCache.get(key);
+  };
+});
+
+module.exports = buuColorSystem;
+    </code></pre>
+    <div class="note">Hinweis: Dies ist der unveränderte JS-Quelltext. Die farblichen Klassen sind nur für visuelle Hervorhebung im Browser.</div>
+  </section>
+
+  <section>
+    <h2>./lib/buuReadline/buuReadlineApi.js</h2>
+    <div class="file-meta">Originaldatei: buuReadlineApi.js</div>
+    <pre><code>
+<span class="kw">function</span> buuRlInterface() {
+  <span class="kw">let</span> resolver = <span class="kw">null</span>;
+  <span class="kw">let</span> buuRlAnswerBuffer = '';
+  <span class="kw">let</span> isPaused = <span class="kw">true</span>;
+
+  <span class="kw">const</span> buuRlOnData = chunk =&gt; {
+    buuRlAnswerBuffer += chunk.toString('utf8');
+    if (buuRlAnswerBuffer.includes('\n')) {
+      const lines = buuRlAnswerBuffer.split('\n');
+      const answer = lines[0].trim();
+      buuRlAnswerBuffer = lines.slice(1).join('\n');
+      if (resolver) {
+        resolver(answer);
+        resolver = <span class="kw">null</span>;
+        isPaused = <span class="kw">true</span>;
+        process.stdin.removeListener('data', buuRlOnData);
+      }
+    }
+  };
+
+  return {
+    question: <span class="kw">function</span>(query) {
+      return <span class="kw">new</span> Promise(resolve =&gt; {
+        resolver = resolve;
+        process.stdout.write(query);
+        if (isPaused) {
+          process.stdin.on('data', buuRlOnData);
+          process.stdin.resume();
+          isPaused = <span class="kw">false</span>;
+        }
+      });
+    },
+
+    menu: <span class="kw">async</span> <span class="kw">function</span>(query, buuRlMenuOptions) {
+      while (<span class="kw">true</span>) {
+        const menuText = buuRlMenuOptions.map((opt, i) =&gt; `${i + 1}. ${opt}`).join('\n');
+        const fullQuery = `${query}\n${menuText}\nWähle eine Option von:\n1-${buuRlMenuOptions.length}\nDeine Auswah: \n`;
+        const answer = await this.question(fullQuery);
+        const choice = parseInt(answer);
+        if (choice &gt;= 1 &amp;&amp; choice &lt;= buuRlMenuOptions.length) {
+          return buuRlMenuOptions[choice - 1];
+        }
+        process.stdout.write('Ungültige Auswahl.\nBitte versuche es erneut.\n');
+      }
+    },
+
+    choose: <span class="kw">async</span> <span class="kw">function</span>(query) {
+      while (<span class="kw">true</span>) {
+        const answer = await this.question(query);
+        const normalized = answer.trim().toLowerCase();
+        if (['j', 'ja', 'y', 'yes'].includes(normalized)) {
+          return <span class="kw">true</span>;
+        }
+        if (['n', 'nein', 'no'].includes(normalized)) {
+          return <span class="kw">false</span>;
+        }
+        process.stdout.write('Bitte antworte mit:\n- j,ja,y,yes für ja\n- n,nein,no für nein\nDeine Auswah: \n');
+      }
+    },
+
+    close: <span class="kw">function</span>() {
+      process.stdin.removeListener('data', buuRlOnData);
+      process.stdin.pause();
+    }
+  };
+}
+
+<span class="kw">function</span> createBuuRl() {
+  return buuRlInterface();
+}
+
+if (typeof module !== 'undefined' &amp;&amp; module.exports) {
+  module.exports = { createBuuRl };
+}
+    </code></pre>
+    <div class="note">Hinweis: Dieses Modul verwendet Node.js-spezifische Streams (process.stdin/process.stdout) und ist nicht direkt im Browser lauffähig.</div>
+  </section>
+
+  <section>
+    <h2>./lib/buuColors/ansiAbused.js</h2>
+    <div class="file-meta">Originaldatei: ansiAbused.js</div>
+    <pre><code>
+<span class="kw">const</span> RESET = '\x1b[0m';
+<span class="kw">const</span> BOLD = '\x1b[1m';
+<span class="kw">const</span> DIM = '\x1b[2m';
+<span class="kw">const</span> ITALIC = '\x1b[3m';
+<span class="kw">const</span> UNDERLINE = '\x1b[4m';
+<span class="kw">const</span> OVERLINE = '\x1b[53m';
+<span class="kw">const</span> INVERSE = '\x1b[7m';
+<span class="kw">const</span> HIDDEN = '\x1b[8m';
+<span class="kw">const</span> STRIKETHROUGH = '\x1b[9m';
+
+<span class="kw">const</span> HonneybuuModzColorConfig = {
+  black: { rgb: [0, 0, 0], ansi: 30, ansiBg: 40 },
+  red: { rgb: [255, 0, 0], ansi: 31, ansiBg: 41 },
+  green: { rgb: [0, 255, 0], ansi: 32, ansiBg: 42 },
+  yellow: { rgb: [255, 255, 0], ansi: 33, ansiBg: 43 },
+  blue: { rgb: [0, 0, 255], ansi: 34, ansiBg: 44 },
+  magenta: { rgb: [255, 0, 255], ansi: 35, ansiBg: 45 },
+  cyan: { rgb: [0, 255, 255], ansi: 36, ansiBg: 46 },
+  white: { rgb: [255, 255, 255], ansi: 37, ansiBg: 47 },
+  orange: { rgb: [255, 165, 0], ansi: <span class="kw">null</span>, ansiBg: <span class="kw">null</span> },
+  lime: { rgb: [0, 255, 0], ansi: <span class="kw">null</span>, ansiBg: <span class="kw">null</span> },
+  purple: { rgb: [128, 0, 128], ansi: <span class="kw">null</span>, ansiBg: <span class="kw">null</span> },
+  brown: { rgb: [165, 42, 42], ansi: <span class="kw">null</span>, ansiBg: <span class="kw">null</span> },
+  brightBlack: { rgb: [128, 128, 128], ansi: 90, ansiBg: 100 },
+  brightRed: { rgb: [255, 128, 128], ansi: 91, ansiBg: 101 },
+  brightGreen: { rgb: [128, 255, 128], ansi: 92, ansiBg: 102 },
+  brightYellow: { rgb: [255, 255, 128], ansi: 93, ansiBg: 103 },
+  brightBlue: { rgb: [128, 128, 255], ansi: 94, ansiBg: 104 },
+  brightMagenta: { rgb: [255, 128, 255], ansi: 95, ansiBg: 105 },
+  brightCyan: { rgb: [128, 255, 255], ansi: 96, ansiBg: 106 },
+  brightWhite: { rgb: [255, 255, 255], ansi: 97, ansiBg: 107 },
+  brightOrange: { rgb: [255, 200, 100], ansi: <span class="kw">null</span>, ansiBg: <span class="kw">null</span> },
+  brightLime: { rgb: [150, 255, 150], ansi: <span class="kw">null</span>, ansiBg: <span class="kw">null</span> },
+  brightPurple: { rgb: [200, 0, 200], ansi: <span class="kw">null</span>, ansiBg: <span class="kw">null</span> },
+  brightBrown: { rgb: [210, 105, 30], ansi: <span class="kw">null</span>, ansiBg: <span class="kw">null</span>
+  }
+};
+
+<span class="kw">const</span> getRgbCode = (r, g, b) =&gt; `\x1b[38;2;${r};${g};${b}m`;
+<span class="kw">const</span> getRgbBgCode = (r, g, b) =&gt; `\x1b[48;2;${r};${g};${b}m`;
+
+<span class="kw">const</span> interpolateColor = (color1, color2, factor) =&gt; {
+  <span class="kw">const</span> result = color1.map((c1, i) =&gt;
+    Math.round(c1 + factor * (color2[i] - c1))
+  );
+  return result;
+};
+
+<span class="kw">const</span> parseColorInput = (colorInput) =&gt; {
+  if (Array.isArray(colorInput) &amp;&amp; colorInput.length === 3 &amp;&amp; colorInput.every(c =&gt; typeof c === 'number')) {
+    return colorInput;
+  }
+  if (typeof colorInput === 'string' &amp;&amp; colorInput.startsWith('rgb(')) {
+    return colorInput.match(/\d+/g).map(Number);
+  }
+  const configColor = HonneybuuModzColorConfig[colorInput];
+  return configColor ? configColor.rgb : <span class="kw">null</span>;
+};
+
+<span class="kw">const</span> usingAnsi = (text, options = {}) =&gt; {
+  <span class="kw">let</span> output = '';
+  <span class="kw">const</span> {
+    fgColor,
+    bgColor,
+    trueBuuColorFgStart,
+    trueBuuColorFgEnd,
+    trueBuuColorBgStart,
+    trueBuuColorBgEnd,
+    style,
+    resetStyle = <span class="kw">true</span>
+  } = options;
+
+  <span class="kw">let</span> stylesApplied = [];
+  if (style) {
+    if (style === 'reset') {
+      stylesApplied.push(RESET);
+    } else {
+      switch (style) {
+        case 'bold': stylesApplied.push(BOLD); break;
+        case 'dim': stylesApplied.push(DIM); break;
+        case 'italic': stylesApplied.push(ITALIC); break;
+        case 'underline': stylesApplied.push(UNDERLINE); break;
+        case 'overline': stylesApplied.push(OVERLINE); break;
+        case 'inverse': stylesApplied.push(INVERSE); break;
+        case 'hidden': stylesApplied.push(HIDDEN); break;
+        case 'strikethrough': stylesApplied.push(STRIKETHROUGH); break;
+      }
+    }
+  }
+
+  <span class="kw">const</span> getFgCode = (colorInput) =&gt; {
+    const rgb = parseColorInput(colorInput);
+    if (rgb) {
+      return getRgbCode(rgb[0], rgb[1], rgb[2]);
+    }
+    const color = HonneybuuModzColorConfig[colorInput];
+    return color &amp;&amp; color.ansi ? `\x1b[${color.ansi}m` : '';
+  };
+
+  <span class="kw">const</span> getBgCode = (colorInput) =&gt; {
+    const rgb = parseColorInput(colorInput);
+    if (rgb) {
+      return getRgbBgCode(rgb[0], rgb[1], rgb[2]);
+    }
+    const color = HonneybuuModzColorConfig[colorInput];
+    return color &amp;&amp; color.ansiBg ? `\x1b[${color.ansiBg}m` : '';
+  };
+
+  <span class="kw">const</span> processChar = (char, index, totalLength) =&gt; {
+    <span class="kw">let</span> charOutput = '';
+    const factor = totalLength &gt; 1 ? index / (totalLength - 1) : 0;
+    <span class="kw">let</span> currentFgCode = '';
+    <span class="kw">let</span> currentBgCode = '';
+    if (trueBuuColorFgStart &amp;&amp; trueBuuColorFgEnd) {
+      const [r, g, b] = interpolateColor(trueBuuColorFgStart, trueBuuColorFgEnd, factor);
+      currentFgCode = getRgbCode(r, g, b);
+    } else if (fgColor) {
+      currentFgCode = getFgCode(fgColor);
+    }
+
+    if (trueBuuColorBgStart &amp;&amp; trueBuuColorBgEnd) {
+      const [bgR, bgG, bgB] = interpolateColor(trueBuuColorBgStart, trueBuuColorBgEnd, factor);
+      currentBgCode = getRgbBgCode(bgR, bgG, bgB);
+    } else if (bgColor) {
+      currentBgCode = getBgCode(bgColor);
+    }
+
+    charOutput += stylesApplied.join('');
+    charOutput += currentFgCode;
+    charOutput += currentBgCode;
+    charOutput += char;
+    charOutput += RESET;
+    return charOutput;
+  };
+
+  if (trueBuuColorFgStart || trueBuuColorBgStart) {
+    text.split('').forEach((char, i) =&gt; {
+      output += processChar(char, i, text.length);
+    });
+  } else {
+    output += stylesApplied.join('');
+    output += fgColor ? getFgCode(fgColor) : '';
+    output += bgColor ? getBgCode(bgColor) : '';
+    output += text;
+  }
+
+  return output + (resetStyle ? RESET : '');
+};
+
+module.exports = {
+  usingAnsi,
+  HonneybuuModzColorConfig,
+  RESET,
+  BOLD,
+  DIM,
+  ITALIC,
+  UNDERLINE,
+  OVERLINE,
+  INVERSE,
+  HIDDEN,
+  STRIKETHROUGH,
+  parseColorInput
+};
+    </code></pre>
+    <div class="note">Hinweis: ANSI-Escape-Sequenzen funktionieren in vielen Terminals; im Browser werden diese Sequenzen als Rohtext angezeigt.</div>
+  </section>
+
+  <footer style="margin-top:26px; border-top:1px solid rgba(255,255,255,0.04); padding-top:12px;">
+    <div style="font-size:13px; color:#8fa8df;">Fertig. Wenn du willst, kann ich die Datei in separate HTML-Seiten splitten, eine druckfreundliche Version erstellen oder die Seite in ein ZIP-Paket für den Download vorbereiten.</div>
+  </footer>
+</body>
+</html>
