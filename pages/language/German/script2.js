@@ -497,6 +497,7 @@ window.gameOver = function(finalScore, collectedCoins, mode) {
          <span style="color: ${secondaryColor}; text-shadow: 0 0 5px ${secondaryColor};">IceSnakeFinalScore: ${displayScore}</span>`;
     gameOverScreen.style.display = 'flex';
 }
+
 window.showStartMenu = function() {
     if (gameOverScreen) {
         gameOverScreen.style.display = 'none';
