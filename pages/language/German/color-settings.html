@@ -47,8 +47,9 @@ Einschränkungen im Rahmen der Lizenz.-->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Color Settings by BuuClient – SeroBot 🥶</title>
-  <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" href="color-menu.css">
+  <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="./color-menu.css">
+  <link rel="stylesheet" href="./styles/classic-boilerplate.css">
 	
 <!-- Open Graph Meta Tags -->
 <meta property="og:title" content="🎨 Color-Settings –  SeroBot - EST • 2025">
@@ -64,394 +65,52 @@ Einschränkungen im Rahmen der Lizenz.-->
 <meta name="twitter:image" content="https://planeteriumprovider.github.io/SeroBot/Grafics/color-panel.svg">
 
 
-
-	<style>
-    :root {
-      --bg-color: #0f172a;
-      --card-bg: #1e293b;
-      --text-color: #f8fafc;
-      --accent: #38bdf8;
-      --accent-hover: #0ea5e9;
-      --transition: 0.3s ease;
-      --radius: 12px;
-      --warning: #a41414;
-      --translated: #d0b50b;
-      --inbuilding: #d0b50b;
-      --info: #f8fafc;
-      --rainbow: linear-gradient(
-        90deg,
-        #b80000,
-        #b81f00,
-        #b83d00,
-        #b85c00,
-        #b87a00,
-        #b89900,
-        #b8b800,
-        #99b800,
-        #7ab800,
-        #5cb800,
-        #3db800,
-        #1fb800,
-        #00b800,
-        #00b81f,
-        #00b83d,
-        #00b85c,
-        #00b87a,
-        #00b899,
-        #00b8b8,
-        #0099b8,
-        #007ab8,
-        #005cb8,
-        #003db8,
-        #001fb8,
-        #0000b8,
-        #1f00b8,
-        #3d00b8,
-        #5c00b8,
-        #7a00b8,
-        #9900b8,
-        #b800b8
-      );
-    }
-
-    body {
-      font-family: "Segoe UI", Roboto, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-    }
-
-        /* Hamburger Menu */
-    .menu-btn {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: var(--accent);
-      color: white;
-      border: none;
-      font-size: 22px;
-      border-radius: 8px;
-      padding: 10px 14px;
-      cursor: pointer;
-      transition: background var(--transition);
-      z-index: 10;
-    }
-
-    .menu-btn:hover {
-      background: var(--accent-hover);
-    }
-
-    .menu {
-      position: fixed;
-      top: 60px;
-      left: 20px;
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: 0 4px 25px rgba(0,0,0,0.3);
-      display: none;
-      flex-direction: column;
-      padding: 12px 0;
-      width: 220px;
-      animation: fadeIn 0.3s ease;
-      z-index: 9;
-    }
-
-    .menu a {
-      text-decoration: none;
-      color: var(--text-color);
-      padding: 12px 20px;
-      display: block;
-      transition: background var(--transition);
-    }
-
-    .menu a:hover {
-      background: var(--accent-hover);
-    }
-
-    /*Container*/
-    .container {
-      max-width: 900px;
-      width: 90%;
-      margin: 60px auto;
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      padding: 30px 40px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    h1 {
-      text-align: center;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      margin-top: 30px;
-      color: var(--accent);
-    }
-
-    p {
-      line-height: 1.6;
-      margin: 8px 0;
-    }
-
-    .lang-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: var(--accent);
-      border: none;
-      color: #fff;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background var(--transition);
-    }
-
-    .lang-btn:hover {
-      background: var(--accent-hover);
-    }
-
-    .section {
-      display: none;
-      animation: fadeIn 0.4s ease;
-    }
-
-    .section.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      font-style: italic;
-      color: #94a3b8;
-    }
-
-    .highlight {
-      color: var(--accent);
-      font-weight: bold;
-    }
-
-    .warninghighlight {
-      color: var(--warning);
-      font-weight: bold;
-    }
-    .translatedinfo {
-      color: var(--translated);
-      font-weight: bold;
-    }
-    .inbuilding {
-      color: var(--inbuilding);
-      font-weight: bold;
-    }
-    @media (max-width: 600px) {
-      .container {
-        padding: 20px;
-      }
-      .lang-btn {
-        top: 15px;
-        right: 15px;
-        padding: 8px 14px;
-      }
-      /* Home Button */
-    .home-btn {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background var(--transition);
-    }
-
-    .home-btn:hover {
-      background: var(--accent-hover);
-    }
-      /*Badges Logik*/
-          .badges {
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    .badges img {
-      margin: 3px;
-    }
-
-    @media (max-width: 600px) {
-      .container { padding: 25px; }
-      .lang-btn { top: 15px; right: 15px; padding: 8px 14px; }
-      }
-    }
-  </style>
 </head>
-<body>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <div class="container">
-    <button class="lang-btn" id="toggleLang"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m13 19l3.5-9l3.5 9m-6.125-2h5.25M3 7h7m0 0h2m-2 0c0 1.63-.793 3.926-2.239 5.655M7.5 6.818V5m.261 7.655C6.79 13.82 5.521 14.725 4 15m3.761-2.345L5 10m2.761 2.655L10.2 15"/></svg> English</button>
-
-    <div class="badges">
-    <img src="https://img.shields.io/badge/Sponsored%20with-♥️%20by%20XOIS-black?style=for-the-badge" alt="Made with Love"/>
-    </div>
-
-    <!-- 🗂 Hamburger-Menu Button -->
-  <button class="menu-btn" id="menuBtn">☰</button>
-
-
-	  
-      <!-- Dropdown Menu -->
-  <nav class="menu" id="menu">
-	<!-- Startseite Abschnitt 1 -->
-    <a href="./index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.5" d="M15.29 20.663h3.017a2.194 2.194 0 0 0 2.193-2.194v-6.454a3.3 3.3 0 0 0-1.13-2.48l-5.93-5.166a2.194 2.194 0 0 0-2.88 0L4.63 9.534a3.3 3.3 0 0 0-1.13 2.481v6.454c0 1.212.982 2.194 2.194 2.194h3.29m6.306 0v-6.581c0-.908-.736-1.645-1.645-1.645H10.63c-.909 0-1.645.737-1.645 1.645v6.581m6.306 0H8.984"/></svg>
-		<b>Startseite</b></a>
-	  
-    <!-- Credits Abschnitt 2 -->
-    <a href="./credits.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32"><path fill="#e4e3e8" d="m15.48 24.06l-.9-.14l-.58-.08l-.28-.08a4.2 4.2 0 0 0-1.18-3a8 8 0 0 0-1.06-.58a7 7 0 0 0 .1 1.82A2.49 2.49 0 0 0 13 23.57a12.5 12.5 0 0 1-2.43-.92a5.7 5.7 0 0 0 .08-2a2.5 2.5 0 0 0-.4-1.18a7.6 7.6 0 0 0-.78-.82A6.4 6.4 0 0 0 9 20.4a2 2 0 0 0 .18 1a2.4 2.4 0 0 0 .72 1s-.55-.4-1.08-.8a4.2 4.2 0 0 1-.69-.6l-.3-.29c.79-1.46 1-2.46.57-3.75a1 1 0 0 0-.2-.26c-.63.69-1.78 1.9-.87 3.5l-.79-1a7 7 0 0 1-.42-.79L6 18.05a4.8 4.8 0 0 0 1.84-2.53a2.5 2.5 0 0 0-.06-1.21c-.86.54-2.32 1.3-2.06 3.09c0 0-.06-.15-.13-.4s-.14-.54-.21-.86a11 11 0 0 1-.17-1.27a4.32 4.32 0 0 0 2.53-2A2.54 2.54 0 0 0 8 11.71c-1 .26-2.56.63-2.83 2.43v-1.3a11 11 0 0 1 .16-1.28a4.7 4.7 0 0 0 3-1.14a6 6 0 0 0 .55-.88a4.5 4.5 0 0 0-1.75 0a2.26 2.26 0 0 0-1.61 1.36l.09-.27l.13-.63c.15-.42.32-.83.32-.83a3 3 0 0 0 1.21-.77a5.8 5.8 0 0 0 1-2.31a2.54 2.54 0 0 0-2.61 1.32A2.05 2.05 0 0 0 5.57 9s-.19.44-.33.88c-.08.23-.15.46-.2.63a1.3 1.3 0 0 0-.07.29a5.6 5.6 0 0 0-.27-2.39c-.2-.71-.51-1.36-.65-2a6 6 0 0 0-.39.52a4.2 4.2 0 0 0-.51 1.36a2.85 2.85 0 0 0 1.69 3.19a12 12 0 0 0-.17 1.38v1.39c-.3-1.86-1.5-2.77-2.26-3.77a3.9 3.9 0 0 0-.22 1.91a2.92 2.92 0 0 0 2.51 2.53a14 14 0 0 0 .2 1.38a10 10 0 0 0 .37 1.35C4.42 15.94 3 15.36 2 14.6a3.9 3.9 0 0 0 .29 1.89a2.82 2.82 0 0 0 3.21 1.76l.2.39a5.5 5.5 0 0 0 .47.86L7 20.62c-1.37-1.28-2.85-1.35-4.14-1.81a4 4 0 0 0 .23.58a5.2 5.2 0 0 0 .79 1.23a2.86 2.86 0 0 0 3.6.45l.32.32a4 4 0 0 0 .75.62c.29.21.58.4.79.57a3 3 0 0 0 .37.22a5.7 5.7 0 0 0-1.22-.35a7 7 0 0 0-1.14 0c-.73 0-1.43.16-2.07.18a4 4 0 0 0 .39.45a3.6 3.6 0 0 0 1.13.84a3.27 3.27 0 0 0 1.69.28a3.33 3.33 0 0 0 1.84-1.05a15.4 15.4 0 0 0 2.51 1a6 6 0 0 0-1.18 0a4.2 4.2 0 0 0-1.1.3c-.68.24-1.28.57-1.87.79a5 5 0 0 0 .49.31a3 3 0 0 0 1.28.43a3 3 0 0 0 3.13-1.69l.28.07a5 5 0 0 0 .64.09l.94.13a.25.25 0 0 0 .24-.25a.23.23 0 0 0-.21-.27m1.06 0l.9-.14l.62-.08l.28-.08a4.2 4.2 0 0 1 1.19-3a7 7 0 0 1 1-.57a6.8 6.8 0 0 1-.13 1.8a2.5 2.5 0 0 1-1.4 1.58a12.7 12.7 0 0 0 2.42-.92a5.4 5.4 0 0 1-.08-2a2.5 2.5 0 0 1 .4-1.18a8 8 0 0 1 .76-.79a6 6 0 0 1 .5 1.75a2.2 2.2 0 0 1-.17 1a2.36 2.36 0 0 1-.7 1a11 11 0 0 0 1.09-.74a4.2 4.2 0 0 0 .69-.58l.3-.29c-.79-1.46-1.05-2.46-.57-3.75a1 1 0 0 1 .19-.26c.63.69 1.78 1.91.87 3.5l.79-1a9 9 0 0 0 .41-.79l.19-.37a4.8 4.8 0 0 1-1.85-2.53a2.7 2.7 0 0 1 .06-1.2c.87.53 2.33 1.29 2.07 3.09c0 0 0-.15.12-.4s.15-.54.22-.86c.12-.64.17-1.29.17-1.29a4.28 4.28 0 0 1-2.53-2a2.6 2.6 0 0 1-.26-1.19c1 .27 2.56.63 2.84 2.44v-1.3a11 11 0 0 0-.16-1.29a4.55 4.55 0 0 1-3-1.12a7 7 0 0 1-.54-.88a4.5 4.5 0 0 1 1.75 0a2.26 2.26 0 0 1 1.6 1.36a2 2 0 0 0-.07-.28l-.23-.7c-.15-.43-.32-.83-.32-.83a3 3 0 0 1-1.21-.79a6 6 0 0 1-1-2.31a2.55 2.55 0 0 1 2.6 1.33a2 2 0 0 1 .07 1.6s.19.44.34.88l.19.63a1.3 1.3 0 0 1 .07.29a5.8 5.8 0 0 1 .27-2.41c.22-.71.54-1.37.67-2a5 5 0 0 1 .39.51a4 4 0 0 1 .51 1.38a2.85 2.85 0 0 1-1.69 3.19q.12.67.18 1.38a14 14 0 0 1 0 1.39c.3-1.86 1.5-2.77 2.26-3.77a3.9 3.9 0 0 1 .23 1.91a2.93 2.93 0 0 1-2.53 2.53a13 13 0 0 1-.18 1.38a12 12 0 0 1-.37 1.35c.81-1.71 2.19-2.28 3.2-3a3.9 3.9 0 0 1-.29 1.89a2.84 2.84 0 0 1-3.2 1.75l-.19.39a5.5 5.5 0 0 1-.46.86c-.4.56-.83 1.12-.83 1.12c1.37-1.28 2.84-1.35 4.13-1.81a4 4 0 0 1-.22.58a5.2 5.2 0 0 1-.79 1.23a2.87 2.87 0 0 1-3.61.45l-.32.32a4.4 4.4 0 0 1-.75.62l-.79.57a3 3 0 0 1-.37.22a5.8 5.8 0 0 1 1.23-.35a7 7 0 0 1 1.14 0c.72 0 1.42.16 2.07.18a6 6 0 0 1-.4.45a3.6 3.6 0 0 1-1.13.84a3.27 3.27 0 0 1-1.69.28a3.3 3.3 0 0 1-1.83-1.05a16 16 0 0 1-2.52 1a6 6 0 0 1 1.21 0a4 4 0 0 1 1.09.3c.68.24 1.29.57 1.87.79a4 4 0 0 1-.48.31a3.1 3.1 0 0 1-1.28.43a3 3 0 0 1-3.13-1.69l-.28.07c-.18 0-.4.06-.64.09l-.94.13a.24.24 0 0 1-.25-.23a.24.24 0 0 1 .23-.26Z"/><path fill="#8d8d8d" d="M12.28 10.74c2.1.61 2.58 1.09 3.18 3.19a.13.13 0 0 0 .17.08a.12.12 0 0 0 .09-.08c.6-2.1 1.08-2.58 3.18-3.19a.13.13 0 0 0 .09-.16a.12.12 0 0 0-.09-.09c-2.1-.61-2.58-1.08-3.18-3.18a.14.14 0 0 0-.17-.09a.13.13 0 0 0-.09.09c-.61 2.1-1.09 2.57-3.18 3.18a.13.13 0 0 0-.09.17a.14.14 0 0 0 .09.08m-1.21 6a.14.14 0 0 0 .17.09a.12.12 0 0 0 .09-.09c.28-1 .48-1.16 1.44-1.43a.14.14 0 0 0 .09-.17a.16.16 0 0 0-.09-.09c-1-.28-1.16-.48-1.44-1.44a.14.14 0 0 0-.17-.09a.2.2 0 0 0-.09.09c-.27 1-.47 1.16-1.43 1.44a.14.14 0 0 0-.09.17a.13.13 0 0 0 .09.09c.96.24 1.16.42 1.43 1.38Zm10.45-.27c-1.11-.32-1.34-.56-1.66-1.66a.13.13 0 0 0-.16-.09a.12.12 0 0 0-.09.09c-.32 1.11-.55 1.34-1.66 1.66a.13.13 0 0 0-.09.16a.12.12 0 0 0 .09.09c1.11.32 1.34.56 1.66 1.66a.13.13 0 0 0 .17.09a.12.12 0 0 0 .08-.09c.32-1.11.56-1.34 1.66-1.66a.13.13 0 0 0 .09-.16a.11.11 0 0 0-.09-.14Z"/></svg>		
-		<b>Credits</b></a>
-	  
-	<!-- Privacy-Policy Abschnitt 3 -->
-    <a href="./privacy.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M20 12V5.749a.6.6 0 0 0-.176-.425l-3.148-3.148A.6.6 0 0 0 16.252 2H4.6a.6.6 0 0 0-.6.6v18.8a.6.6 0 0 0 .6.6H13M8 10h8M8 6h4m-4 8h3"/><path d="M16 2v3.4a.6.6 0 0 0 .6.6H20m-.008 9.125l2.556.649c.266.068.453.31.445.584C22.821 22.116 19.5 23 19.5 23s-3.321-.884-3.493-6.642a.59.59 0 0 1 .445-.584l2.556-.649c.323-.082.661-.082.984 0"/></g></svg>
-		<b>Privacy Policy</b></a>
-	  
-	<!-- User-Therms Abschnitt 4 -->
-    <a href="./therms.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3c-1.27 0-2.4.8-2.82 2H3v2h1.95L2 14c-.47 2 1 3 3.5 3s4.06-1 3.5-3L6.05 7h3.12c.33.85.98 1.5 1.83 1.83V20H2v2h20v-2h-9V8.82c.85-.32 1.5-.97 1.82-1.82h3.13L15 14c-.47 2 1 3 3.5 3s4.06-1 3.5-3l-2.95-7H21V5h-6.17C14.4 3.8 13.27 3 12 3m0 2a1 1 0 0 1 1 1a1 1 0 0 1-1 1a1 1 0 0 1-1-1a1 1 0 0 1 1-1m-6.5 5.25L7 14H4zm13 0L20 14h-3z"/></svg>
-		<b>User Therms</b></a>
-	  
-	<!-- Copyright Abschnitt 5 -->
-    <a href="./copyright.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fff" d="M17.805 2.197v.066h.156v.44h.072v-.44h.156v-.066zm.9 0l-.175.353l-.172-.353h-.087v.506h.067V2.3l.172.35h.045l.172-.35v.404h.066v-.506zm-4.257 1c-.204.31-.424.66-.66 1.06l-.04.062a45 45 0 0 0-1.265 2.29q-.281.54-.577 1.146l2.267-.25c.66-.302.955-.578 1.242-.976a16 16 0 0 0 .23-.342c.23-.363.46-.763.663-1.16c.197-.386.37-.767.505-1.11q.125-.332.198-.6q.062-.236.1-.45c-.884.15-1.965.295-2.668.33zM11.894 7.78l-.077.16q-.117.238-.236.488l-.26.552l-.132.287a75 75 0 0 0-1.427 3.3q-.244.596-.493 1.23c-.15.38-.297.765-.45 1.164l-.02.06q-.224.594-.453 1.22l-.01.027l.72-.08a.2.2 0 0 1-.042-.006c.863-.106 2.01-.75 2.75-1.547c.342-.367.652-.8.94-1.306q.319-.564.604-1.258q.252-.607.48-1.318c-.196.105-.423.18-.673.235a2 2 0 0 1-.273.046c.806-.31 1.314-.905 1.683-1.64a2.8 2.8 0 0 1-.968.428q-.088.018-.174.03l-.043.006h.002c.278-.118.514-.248.718-.403a2.6 2.6 0 0 0 .637-.698l.063-.104l.077-.154a8 8 0 0 0 .367-.85l.03-.088a3 3 0 0 0 .123-.463a1 1 0 0 1-.094.065c-.243.145-.66.277-.996.34l.663-.074l-.664.073h-.017l-.1.017q.008-.005.017-.008l-2.265.25l-.013.022zM8.27 16.45q-.176.485-.355.992l-.005.015l-.05.142c-.08.227-.15.432-.31.9c.264.12.475.435.675.793a1.44 1.44 0 0 0-.466-.99c1.293.06 2.41-.27 2.99-1.217q.075-.126.14-.268c-.26.333-.59.474-1.2.44l-.005.002l.004-.002c.9-.404 1.354-.79 1.754-1.433q.14-.229.28-.503c-.788.81-1.702 1.04-2.664.865l-.72.078l-.067.183zM15.42.112c-.376.222-1 .85-1.748 1.763l.686 1.294c.48-.687.97-1.307 1.462-1.836l.058-.062q-.03.03-.057.062c-.16.176-.644.74-1.375 1.863c.703-.035 1.784-.18 2.666-.33c.262-1.47-.258-2.142-.258-2.142s-.66-1.07-1.436-.61zm-3.084 6.402a40 40 0 0 1 1.306-2.26l.04-.064q.336-.529.677-1.02l-.685-1.293l-.157.192q-.297.369-.613.79a40 40 0 0 0-2.016 2.97l-.022.038l.893 1.763q.284-.568.575-1.118zm-3.73 8.32c.158-.406.319-.81.483-1.225c.156-.394.32-.79.484-1.19a91 91 0 0 1 1.6-3.604l.205-.424c.12-.243.237-.485.36-.724a.1.1 0 0 1 .02-.04l-.895-1.763l-.044.07a44 44 0 0 0-.617 1.042a38 38 0 0 0-1.092 2.04l-.094.193a25 25 0 0 0-1.258 3.087a19 19 0 0 0-.52 1.997l.896 1.77q.177-.476.364-.963zm-1.376-.476a13 13 0 0 0-.234 1.692l-.005.06c-.28-.45-1.03-.888-1.026-.884c.537.778.944 1.55 1.005 2.31c-.29.058-.684-.027-1.14-.195c.475.436.83.556.97.588c-.434.03-.89.328-1.346.67c.668-.27 1.21-.38 1.596-.29c-.61 1.74-1.23 3.655-1.843 5.69a.54.54 0 0 0 .364-.354c.11-.368.84-2.786 1.978-5.965l.097-.27l.028-.078q.181-.498.374-1.02l.09-.237v-.004L7.24 14.3c-.003.02-.01.04-.012.06z"/></svg>		
-		<b>Copyrights</b></a>
-	  
-	<!-- Color-Settings Abschnitt 6 -->
-    <a href="./color-settings.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8c.28 0 .5-.22.5-.5a.54.54 0 0 0-.14-.35c-.41-.46-.63-1.05-.63-1.65a2.5 2.5 0 0 1 2.5-2.5H16c2.21 0 4-1.79 4-4c0-3.86-3.59-7-8-7m-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 10 6.5 10s1.5.67 1.5 1.5S7.33 13 6.5 13m3-4C8.67 9 8 8.33 8 7.5S8.67 6 9.5 6s1.5.67 1.5 1.5S10.33 9 9.5 9m5 0c-.83 0-1.5-.67-1.5-1.5S13.67 6 14.5 6s1.5.67 1.5 1.5S15.33 9 14.5 9m4.5 2.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5" opacity="0.3" /><path fill="currentColor" d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10a2.5 2.5 0 0 0 1.86-4.17a.495.495 0 0 1 .37-.83H16c3.31 0 6-2.69 6-6c0-4.96-4.49-9-10-9m4 13h-1.77a2.5 2.5 0 0 0-2.5 2.5c0 .61.22 1.19.63 1.65c.06.07.14.19.14.35c0 .28-.22.5-.5.5c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.14 8 7c0 2.21-1.79 4-4 4" /><circle cx="6.5" cy="11.5" r="1.5" fill="currentColor" /><circle cx="9.5" cy="7.5" r="1.5" fill="currentColor" /><circle cx="14.5" cy="7.5" r="1.5" fill="currentColor" /><circle cx="17.5" cy="11.5" r="1.5" fill="currentColor" /></svg>
-		<b>Color Settings</b></a>
-	  
-	<!-- Admin-Zone Abschnitt 7 -->
-    <a href="./admin-zone.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 14v2a6 6 0 0 0-6 6H4a8 8 0 0 1 8-8m0-1c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6m0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4m9 6h1v5h-8v-5h1v-1a3 3 0 1 1 6 0zm-2 0v-1a1 1 0 1 0-2 0v1z" /></svg>
-		<b>Admin-Zone</b></a>
-  </nav>    
-
-    
-
-    <div id="de" class="section active">
-      <h1></h1>
-      <p><strong>Letzte Aktualisierung:</strong> 24. Oktober 2025  | 7:40 Uhr</p>
-
-<p><span class="inbuilding">HINWEIS: Diese Seite befindet sich gerade im Aufbau und könnte fehlerhaft sein!</span></p>
-<!-- <p>Diese Seite kann leider erst gebaut werden, sobald die komplette Logik strukturiert und geupdated wurde. Ich bitte um Verständis.<br>
-  <br> 
-Dieses Color-Setting Panel wird gesponsort von XOIS. Großen Dank für deine Mithilfe!</p> -->
-  <br>
-  <br>
-		        <h2>Passen Sie jetzt Ihr Design an!</h2>
-        <button id="pc-button">PC GAMER</button>
-        <button id="mobile-button">MOBILE GAMER</button>
-        <button id="settings-button">COLOR SETTINGS</button>
-    </div>
-    <div id="color-settings-screen" style="display:none;">
-        <div id="color-settings-box">
-            <h1>🎨 COLORS</h1>
-            <p>↓ SCROLLEN ↓</p>
-            <p>Wähle ein Farbschema:</p>
-            <div id="theme-list">
-            </div>
-            <div class="button-group">
-                <button id="restart-from-settings" class="neon-glowing-button" style="display:none;">NOCHMAL</button>
-                <button id="back-to-game" style="display:none;">ZURÜCK ZUM SPIEL</button>
-                <button id="back-from-settings">ZURÜCK ZUM MENÜ</button>
-            </div>
-        </div>
-    </div>
-    <div id="game-container" style="display:none;">
-        <h2 id="score">SCORE: 1.000</h2>
-        <div id="game-grid"></div>
-        <div id="mobile-controls" style="display:none;">
-            <button id="up-btn">↑</button>
-            <div>
-                <button id="left-btn">←</button>
-                <button id="right-btn">→</button>
-            </div>
-            <button id="down-btn">↓</button>
-        </div>
-    </div>
-		
-		
-		
-		<!-- <div id="color-settings-box">
-            <h1>🎨 COLOR SETTINGS - by BuuClient | SeroBot 🥶</h1>
-            <p>↓ SCROLLEN ↓</p>
-            <p>Wähle ein Farbschema:</p>
-            <div id="theme-list">
-            </div> -->
-            <!-- <div class="button-group">
-                <button id="back-from-settings">ZURÜCK ZUM MENÜ</button>
-            </div> -->
-        </div>
-  <hr>
-  <br>
-    </p>   
-      <footer>
-		  Sponsored by BuuClient - XOIS thanks you so much!<br>
-        🧊 <strong>SeroBot 🥶 • EST 2025</strong><br>
-        „Deine Daten bleiben privat – lokal & sicher.“<br><br>
-                <sub>© 2025 planeteriumprovider. 
-          Apache LICENSE-2.0. Alle Rechte vorbehalten. 🧊 SeroBot Teams.</sub>
-      </footer>
-    </div>
-
-	   <!-- 🇬🇧 English -->
-    <div id="en" class="section">
-		nothing</div>
-    
-<script src="script2.js"></script> 
-<script src="main.js"></script>
-<script src="color-menu.js"></script>
-	  
-<script>
+<body>                                                                                                                                                                                                                                                         <!-- <div class="badges"> <img src="https://img.shields.io/badge/Sponsored%20with-♥️%20by%20XOIS-black?style=for-the-badge" alt="Made with Love"/> </div> -->
+<iframe src="./styles/button-menu.html"></iframe>  
+<iframe src="./styles/translate-and-made.html"></iframe>  
 	
-    const toggleBtn = document.getElementById('toggleLang');
-    const deSection = document.getElementById('de');
-    const enSection = document.getElementById('en');
+<div id="de" class="section active">
+<h1></h1>
+<p><strong>Letzte Aktualisierung:</strong> 24. Oktober 2025  | 7:40 Uhr</p>
 
-    toggleBtn.addEventListener('click', () => {
-      const isGerman = deSection.classList.contains('active');
-      deSection.classList.toggle('active', !isGerman);
-      enSection.classList.toggle('active', isGerman);
-      toggleBtn.textContent = isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English';
-    });
-    // Hamburger Menu
-    const menuBtn = document.getElementById("menuBtn");
-    const menu = document.getElementById("menu");
-    let open = false;
+<p><span class="inbuilding">HINWEIS: Diese Seite befindet sich gerade im Aufbau und könnte fehlerhaft sein!</span></p>                                                                                                               <!-- <p>Diese Seite kann leider erst gebaut werden, sobald die komplette Logik strukturiert und geupdated wurde. Ich bitte um Verständis.<br><br> Dieses Color-Setting Panel wird gesponsort von XOIS. Großen Dank für deine Mithilfe!</p> -->
+<br>
+<br>
+		
+<button id="settings-button">COLOR SETTINGS</button>
+<div id="color-settings-screen"> 
+<div id="color-settings-box">
+<h1>🎨 COLOR SETTINGS - by BuuClient | SeroBot 🥶</h1>
+<p>↓ SCROLLEN ↓</p>
+<p>Wähle ein Farbschema:</p>
+<div id="theme-list">
+</div> 
+<div class="button-group">
+<button id="back-from-settings">ZURÜCK ZUM MENÜ</button>
+</div>
+</div>
+<hr>
+<br>
+</p>  
+	
+	<!-- Sponsored by BuuClient - XOIS thanks you so much! -->
+<iframe src="./styles/de-footer.html"></iframe>
+</div>
 
-    menuBtn.addEventListener("click", () => {
-      open = !open;
-      menu.style.display = open ? "flex" : "none";
-    });
-
-    // Schließt das Menü, wenn außerhalb geklickt wird
-    document.addEventListener("click", (e) => {
-      if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
-        menu.style.display = "none";
-        open = false;
-      }
-    });
-  </script>
+<!-- 🇬🇧 English -->
+<div id="en" class="section">
+<iframe src="../../English/color-settings.html"></iframe>
+<br><br>
+<iframe src="./styles/en-footer.html"></iframe>
+	
+	
+<script src="./script2.js"></script> 
+<script src="./main.js"></script>
+<script src="./color-menu.js"></script>
+<script src="./styles/translate.js"></script> 
+<script src="./styles/button-menu.js"></script>
+<script src="./styles/fallback.js"></script>
+	
 </body>
-  </html>
+</html>
