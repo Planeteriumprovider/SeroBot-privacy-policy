@@ -35,6 +35,8 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+      - name: Build Jekyll for GitHub Pages
+        uses: actions/jekyll-build-pages@v1.0.13
         with:
           # Upload entire repository
           path: '.'
