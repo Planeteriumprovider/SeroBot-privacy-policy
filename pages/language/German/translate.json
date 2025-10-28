@@ -1,0 +1,39 @@
+{
+  "pairs": {
+    "en-de": {
+      "hello": "hallo",
+      "good morning": "guten morgen",
+      "thank you": "danke",
+      "how are you": "wie geht's",
+      "yes": "ja",
+      "no": "nein",
+      "world": "welt",
+      "SeroBot": "SeroBot"
+    },
+    "de-en": {
+      "hallo": "hello",
+      "guten morgen": "good morning",
+      "danke": "thank you",
+      "wie geht's": "how are you",
+      "ja": "yes",
+      "nein": "no",
+      "welt": "world",
+      "SeroBot": "SeroBot"
+    },
+
+    
+    
+    "en-es": {
+      "hello": "hola",
+      "world": "mundo"
+    },
+    "es-en": {
+      "hola": "hello",
+      "mundo": "world"
+    }
+  },
+  "meta": {
+    "created": "2025-10-28T11:38:07.812Z",
+    "modified": "2025-10-28T11:38:44.402Z"
+  }
+}
