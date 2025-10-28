@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Offline Translator — SeroBot Translate</title>
+<style>
+  :root{
+    --bg:#0f1724; --card:#0b1220; --accent:#60a5fa; --muted:#94a3b8; --glass: rgba(255,255,255,0.03);
+  }
+  html,body{height:100%; margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+  body{background:linear-gradient(180deg,#071024 0%, #08182b 100%); color:#e6eef8; display:flex; align-items:center; justify-content:center; padding:24px;}
+  .wrap{width:100%; max-width:1100px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:14px; padding:20px; box-shadow:0 8px 30px rgba(2,6,23,0.6);}
+  header{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px;}
+  h1{font-size:18px; margin:0;}
+  .sub{color:var(--muted); font-size:12px;}
+  .grid{display:grid; grid-template-columns: 1fr 1fr; gap:14px;}
+  textarea{width:100%; min-height:140px; resize:vertical; background:var(--glass); border:1px solid rgba(255,255,255,0.03); color:inherit; padding:12px; border-radius:8px; box-sizing:border-box;}
+  select,input,button{background:transparent; color:inherit; border:1px solid rgba(255,255,255,0.06); padding:8px 10px; border-radius:8px;}
+  .controls{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .btn{background:linear-gradient(90deg,var(--accent),#7dd3fc); color:#012; font-weight:600; border:none; padding:10px 12px; border-radius:10px; cursor:pointer;}
+  .btn.ghost{background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.04);}
+  .dict-panel{margin-top:14px; padding:12px; background:rgba(255,255,255,0.02); border-radius:10px; border:1px solid rgba(255,255,255,0.02);}
+  .row{display:flex; gap:8px; align-items:center;}
+  label{font-size:13px; color:var(--muted);}
+  .small{font-size:12px; color:var(--muted);}
+  .flex-between{display:flex; justify-content:space-between; align-items:center;}
+  table{width:100%; border-collapse:collapse; margin-top:8px;}
+  th,td{padding:8px; text-align:left; border-bottom:1px dashed rgba(255,255,255,0.02); font-size:13px;}
+  .actions{display:flex; gap:6px;}
+  .chip{padding:6px 8px; border-radius:999px; background:rgba(255,255,255,0.02); font-size:12px;}
+  footer{margin-top:12px; display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap;}
+  .note{font-size:12px; color:var(--muted);}
+  input[type=file]{display:none;}
+  .mt8{margin-top:8px;}
+</style>
+</head>
+<body>
+  <div class="wrap" role="main">
+    <header>
+      <div>
+        <h1>Offline Translator • Plantos Translate</h1>
+        <div class="sub">Lokal, ohne externe Services — Phrase- & Wortübersetzung. Add / Export / Import JSON.</div>
+      </div>
+      <div class="controls">
+        <div class="chip" id="status">Ready</div>
+        <button class="btn ghost" id="resetLocal">Reset DB</button>
+      </div>
+    </header>
+
+    <section class="grid">
+      <div>
+        <label for="srcLang">Quelle</label>
+        <div class="row mt8">
+          <select id="srcLang"></select>
+          <select id="tgtLang"></select>
+          <button class="btn" id="swapBtn">↔️ Swap</button>
+        </div>
+
+        <div class="mt8">
+          <label for="inputTxt">Eingabetext</label>
+          <textarea id="inputTxt" placeholder="Schreibe oder füge Text ein..."></textarea>
+        </div>
+
+        <div class="row mt8">
+          <button class="btn" id="translateBtn">Translate</button>
+          <button class="btn ghost" id="clearBtn">Clear</button>
+          <button class="btn ghost" id="copyOut">Copy Output</button>
+        </div>
+
+        <div class="dict-panel mt8">
+          <div class="flex-between">
+            <div>
+              <label>Dictionary (Add / Edit)</label>
+              <div class="small">Exact phrase bevorzugt — fällt zurück auf Wort-für-Wort.</div>
+            </div>
+            <div class="small">Entries: <span id="entryCount">0</span></div>
+          </div>
+
+          <div class="row mt8">
+            <input id="srcPhrase" placeholder="Quelle phrase / word" />
+            <input id="tgtPhrase" placeholder="Ziel phrase / word" />
+            <select id="entryLangPair"></select>
+            <button class="btn" id="addEntry">Add / Update</button>
+          </div>
+
+          <div class="mt8">
+            <table id="dictTable">
+              <thead><tr><th>Source</th><th>Target</th><th>Pair</th><th></th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      <div>
+        <label for="output">Übersetzung</label>
+        <textarea id="output" readonly placeholder="Übersetzung erscheint hier..."></textarea>
+
+        <div class="mt8">
+          <label for="options">Optionen</label>
+          <div class="row mt8">
+            <label class="small"><input type="checkbox" id="caseSensitive" /> Case-sensitive</label>
+            <label class="small"><input type="checkbox" id="preservePunct" checked /> Preserve punctuation</label>
+            <label class="small"><input type="checkbox" id="wordFallback" checked /> Wort-fallback</label>
+          </div>
+        </div>
+
+        <div class="mt8 dict-panel">
+          <div class="flex-between">
+            <div>
+              <label>Import / Export Dictionary</label>
+              <div class="small">Speichere dein Dictionary als JSON oder lade es hoch.</div>
+            </div>
+            <div class="actions">
+              <button class="btn ghost" id="exportBtn">Export JSON</button>
+              <label class="btn ghost" for="importFile" style="cursor:pointer">Import JSON</label>
+              <input type="file" id="importFile" accept=".json" />
+            </div>
+          </div>
+          <div class="mt8 small">Tipp: Du kannst das JSON manuell editieren — Schema: { "pairs": { "en-de": { "hello":"hallo", ... }, ... } }</div>
+        </div>
+
+        <div class="mt8">
+          <label>Dictionary Beispiel / Vorschau</label>
+          <pre id="sample" style="background:#071023;padding:10px;border-radius:8px;font-size:12px;color:var(--muted);"></pre>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="note">Motivierend & lokal — respect the old ways: erst Wörter sammeln, dann genau übersetzen. ✨</div>
+      <div class="small">Made for Dev4Planeterium — offline only.</div>
+    </footer>
+  </div>
+
+<script>
+/*
+  Plantos Translate — Offline Translator
+  - Local JSON dictionary stored in localStorage under key PLANTOS_DICT_V1
+  - Schema:
+    {
+      "pairs": {
+        "en-de": { "hello": "hallo", "good morning": "guten morgen" },
+        "de-en": { "hallo": "hello" }
+      },
+      "meta": { "created": "...", "modified": "..." }
+    }
+*/
+
+const STORAGE_KEY = 'PLANTOS_DICT_V1';
+
+// --- Example starter dictionary
+const starter = {
+  pairs: {
+    "en-de": {
+      "hello": "hallo",
+      "good morning": "guten morgen",
+      "thank you": "danke",
+      "how are you": "wie geht's",
+      "yes": "ja",
+      "no": "nein",
+      "world": "welt"
+    },
+    "de-en": {
+      "hallo": "hello",
+      "guten morgen": "good morning",
+      "danke": "thank you",
+      "wie geht's": "how are you",
+      "ja": "yes",
+      "nein": "no",
+      "welt": "world"
+    },
+    "en-es": {
+      "hello": "hola",
+      "world": "mundo"
+    },
+    "es-en": {
+      "hola": "hello",
+      "mundo": "world"
+    }
+  },
+  meta: { created: new Date().toISOString(), modified: new Date().toISOString() }
+};
+
+// --- Utilities
+const $ = id => document.getElementById(id);
+const readDB = () => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return JSON.parse(JSON.stringify(starter));
+    return JSON.parse(raw);
+  } catch (e) {
+    console.error('DB read error', e);
+    return JSON.parse(JSON.stringify(starter));
+  }
+};
+const writeDB = (db) => { db.meta.modified = new Date().toISOString(); localStorage.setItem(STORAGE_KEY, JSON.stringify(db)); refreshUI(); };
+
+// --- UI Elements
+const srcLang = $('srcLang'), tgtLang = $('tgtLang'), swapBtn = $('swapBtn');
+const inputTxt = $('inputTxt'), output = $('output');
+const translateBtn = $('translateBtn'), clearBtn = $('clearBtn'), copyOut = $('copyOut');
+const srcPhrase = $('srcPhrase'), tgtPhrase = $('tgtPhrase'), addEntry = $('addEntry'), entryLangPair = $('entryLangPair');
+const dictTableBody = document.querySelector('#dictTable tbody');
+const entryCount = $('entryCount');
+const exportBtn = $('exportBtn'), importFile = $('importFile');
+const resetLocal = $('resetLocal');
+const sample = $('sample');
+const statusChip = $('status');
+
+// Options
+const caseSensitiveChk = $('caseSensitive');
+const preservePunctChk = $('preservePunct');
+const wordFallbackChk = $('wordFallback');
+
+let DB = readDB();
+
+// --- Helpers for languages
+function getAvailablePairs() {
+  const keys = Object.keys(DB.pairs);
+  const langs = new Set();
+  keys.forEach(k => {
+    const [a,b] = k.split('-'); langs.add(a); langs.add(b);
+  });
+  return { pairs: keys, langs: Array.from(langs).sort() };
+}
+
+function populateLangSelectors(){
+  const {langs, pairs} = getAvailablePairs();
+  // ensure english and german exist
+  if(!langs.includes('en')) langs.push('en');
+  if(!langs.includes('de')) langs.push('de');
+  // build options
+  const build = (sel) => {
+    sel.innerHTML = '';
+    langs.forEach(l => {
+      const opt = document.createElement('option'); opt.value = l; opt.textContent = l;
+      sel.appendChild(opt);
+    });
+  };
+  build(srcLang); build(tgtLang);
+
+  // populate entryLangPair
+  entryLangPair.innerHTML = '';
+  Object.keys(DB.pairs).forEach(p => {
+    const o = document.createElement('option'); o.value = p; o.textContent = p; entryLangPair.appendChild(o);
+  });
+}
+
+// --- Normalization & punctuation
+function splitPunct(word){
+  // preserve leading/trailing punctuation
+  const m = word.match(/^([^\wÄÖÜäöüß']*)([\wÄÖÜäöüß']+)([^\wÄÖÜäöüß']*)$/);
+  if(m) return {pre:m[1], core:m[2], post:m[3]};
+  return {pre:'', core:word, post:''};
+}
+
+function normalize(text, caseSensitive=false){
+  return caseSensitive ? text : text.toLowerCase();
+}
+
+// --- Translation engine
+function translateText(text, from, to, opts={caseSensitive:false, preservePunct:true, wordFallback:true}){
+  if(!text) return '';
+  const pairKey = `${from}-${to}`;
+  const pairDict = DB.pairs[pairKey] || {};
+  const phraseDict = pairDict; // phrase and word dictionary stored same place
+
+  // Try phrase-level matches first (longer phrases prioritized)
+  // We'll try to match multi-word phrases greedily.
+  let working = text;
+  if(!opts.caseSensitive) working = working.toLowerCase();
+
+  // tokenization simple: split by spaces, keep punctuation together
+  const tokens = working.split(/\s+/);
+  const originalTokens = text.split(/\s+/);
+
+  // Build phrase index from dict keys, sorted by word count descending
+  const phraseKeys = Object.keys(phraseDict).sort((a,b) => b.split(/\s+/).length - a.split(/\s+/).length);
+
+  // We'll attempt a left-to-right greedy matching: try longest phrase at position i
+  const outTokens = [];
+  for(let i=0;i<tokens.length;i++){
+    let matched = false;
+    for(const phrase of phraseKeys){
+      const phraseNorm = opts.caseSensitive ? phrase : phrase.toLowerCase();
+      const phraseWords = phraseNorm.split(/\s+/);
+      const slice = tokens.slice(i, i + phraseWords.length).join(' ');
+      if(slice === phraseNorm){
+        // get original token slice to preserve punctuation if requested
+        const origSlice = originalTokens.slice(i, i + phraseWords.length).join(' ');
+        let translated = phraseDict[phrase] || phraseDict[phraseNorm];
+        if(!translated && opts.wordFallback){
+          // fallback to word-by-word inside phrase
+          translated = phraseWords.map(w => phraseDict[w] || w).join(' ');
+        }
+        // preserve punctuation if needed
+        if(opts.preservePunct){
+          // crude: try to map punctuation from origSlice tokens to translated tokens
+          // probably OK for simple use
+        }
+        outTokens.push(translated || origSlice);
+        i += phraseWords.length - 1;
+        matched = true;
+        break;
+      }
+    }
+    if(matched) continue;
+
+    // If no phrase matched, handle single token with punctuation
+    const orig = originalTokens[i];
+    const parts = splitPunct(orig);
+    const core = normalize(parts.core, opts.caseSensitive);
+    let translatedCore = phraseDict[core] || (opts.wordFallback ? core : core);
+    // try direct exact key (case-sensitive) if enabled
+    if(opts.caseSensitive && phraseDict[parts.core]) translatedCore = phraseDict[parts.core];
+
+    const reconstructed = (opts.preservePunct ? (parts.pre + translatedCore + parts.post) : (translatedCore));
+    outTokens.push(reconstructed);
+  }
+
+  // join with spaces (simple)
+  return outTokens.join(' ');
+}
+
+// --- UI logic
+function refreshDictTable(){
+  dictTableBody.innerHTML = '';
+  const rows = [];
+  for(const pair of Object.keys(DB.pairs).sort()){
+    const map = DB.pairs[pair];
+    for(const s of Object.keys(map).sort()){
+      const tr = document.createElement('tr');
+      const td1 = document.createElement('td'); td1.textContent = s;
+      const td2 = document.createElement('td'); td2.textContent = map[s];
+      const td3 = document.createElement('td'); td3.textContent = pair;
+      const td4 = document.createElement('td');
+      const btnEdit = document.createElement('button'); btnEdit.textContent = 'Edit'; btnEdit.className='btn ghost';
+      btnEdit.onclick = () => {
+        srcPhrase.value = s;
+        tgtPhrase.value = map[s];
+        entryLangPair.value = pair;
+      };
+      const btnDel = document.createElement('button'); btnDel.textContent='Del'; btnDel.className='btn ghost';
+      btnDel.onclick = () => {
+        if(confirm('Entry löschen?')) {
+          delete DB.pairs[pair][s];
+          // if empty pair, remove
+          if(Object.keys(DB.pairs[pair]).length===0) delete DB.pairs[pair];
+          writeDB(DB);
+        }
+      };
+      td4.appendChild(btnEdit); td4.appendChild(btnDel);
+      tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3); tr.appendChild(td4);
+      dictTableBody.appendChild(tr);
+      rows.push(tr);
+    }
+  }
+  entryCount.textContent = rows.length;
+}
+
+function refreshSample(){
+  sample.textContent = JSON.stringify(DB, null, 2);
+}
+
+function refreshUI(){
+  DB = readDB();
+  populateLangSelectors();
+  refreshDictTable();
+  refreshSample();
+  statusChip.textContent = 'Ready • ' + (new Date(DB.meta.modified)).toLocaleString();
+}
+
+// Events
+translateBtn.onclick = () => {
+  const from = srcLang.value, to = tgtLang.value;
+  if(from === to){ output.value = inputTxt.value; return; }
+  const opts = {
+    caseSensitive: caseSensitiveChk.checked,
+    preservePunct: preservePunctChk.checked,
+    wordFallback: wordFallbackChk.checked
+  };
+  const res = translateText(inputTxt.value, from, to, opts);
+  output.value = res;
+};
+
+clearBtn.onclick = () => { inputTxt.value=''; output.value=''; };
+
+copyOut.onclick = async () => {
+  try {
+    await navigator.clipboard.writeText(output.value);
+    alert('Copied output to clipboard');
+  } catch (e) {
+    alert('Clipboard error: ' + e.message);
+  }
+};
+
+swapBtn.onclick = () => {
+  const a = srcLang.value; srcLang.value = tgtLang.value; tgtLang.value = a;
+};
+
+addEntry.onclick = () => {
+  const s = srcPhrase.value.trim();
+  const t = tgtPhrase.value.trim();
+  const pair = entryLangPair.value;
+  if(!s || !t){ alert('Source und Target müssen ausgefüllt sein.'); return; }
+  if(!DB.pairs[pair]) DB.pairs[pair] = {};
+  DB.pairs[pair][s] = t;
+  writeDB(DB);
+  srcPhrase.value=''; tgtPhrase.value='';
+  statusChip.textContent = 'Entry saved';
+};
+
+exportBtn.onclick = () => {
+  const blob = new Blob([JSON.stringify(DB, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'plantos_dict.json';
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+};
+
+importFile.onchange = (e) => {
+  const f = e.target.files[0];
+  if(!f) return;
+  const r = new FileReader();
+  r.onload = (ev) => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      // basic validation
+      if(!data.pairs || typeof data.pairs !== 'object'){ alert('Ungültiges Dictionary Format. Erwartet: { pairs: { "en-de": {...} } }'); return; }
+      // merge: keep existing unless overwritten
+      DB.pairs = Object.assign({}, DB.pairs, data.pairs);
+      writeDB(DB);
+      alert('Import erfolgreich!');
+    } catch (err) {
+      alert('Fehler beim Einlesen: ' + err.message);
+    }
+  };
+  r.readAsText(f);
+  e.target.value = '';
+};
+
+resetLocal.onclick = () => {
+  if(confirm('Lokales Dictionary zurücksetzen auf Default?')) {
+    localStorage.removeItem(STORAGE_KEY);
+    DB = readDB();
+    refreshUI();
+    alert('Reset durchgeführt.');
+  }
+};
+
+// initial load
+refreshUI();
+
+// keyboard shortcut: Ctrl+Enter -> translate
+inputTxt.addEventListener('keydown', (e) => {
+  if(e.key === 'Enter' && (e.ctrlKey || e.metaKey)){
+    translateBtn.click();
+    e.preventDefault();
+  }
+});
+</script>
+</body>
+  </html>
