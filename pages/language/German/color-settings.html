@@ -359,12 +359,46 @@ Einschränkungen im Rahmen der Lizenz.-->
 Dieses Color-Setting Panel wird gesponsort von XOIS. Großen Dank für deine Mithilfe!</p> -->
   <br>
   <br>
-		<div id="color-settings-box">
-            <h1>🎨 COLOR SETTINGS - by BuuClient | SeroBot 🥶</h1>
+		        <h2>Passen Sie jetzt Ihr Design an!</h2>
+        <button id="pc-button">PC GAMER</button>
+        <button id="mobile-button">MOBILE GAMER</button>
+        <button id="settings-button">COLOR SETTINGS</button>
+    </div>
+    <div id="color-settings-screen" style="display:none;">
+        <div id="color-settings-box">
+            <h1>🎨 COLORS</h1>
             <p>↓ SCROLLEN ↓</p>
             <p>Wähle ein Farbschema:</p>
             <div id="theme-list">
             </div>
+            <div class="button-group">
+                <button id="restart-from-settings" class="neon-glowing-button" style="display:none;">NOCHMAL</button>
+                <button id="back-to-game" style="display:none;">ZURÜCK ZUM SPIEL</button>
+                <button id="back-from-settings">ZURÜCK ZUM MENÜ</button>
+            </div>
+        </div>
+    </div>
+    <div id="game-container" style="display:none;">
+        <h2 id="score">SCORE: 1.000</h2>
+        <div id="game-grid"></div>
+        <div id="mobile-controls" style="display:none;">
+            <button id="up-btn">↑</button>
+            <div>
+                <button id="left-btn">←</button>
+                <button id="right-btn">→</button>
+            </div>
+            <button id="down-btn">↓</button>
+        </div>
+    </div>
+		
+		
+		
+		<!-- <div id="color-settings-box">
+            <h1>🎨 COLOR SETTINGS - by BuuClient | SeroBot 🥶</h1>
+            <p>↓ SCROLLEN ↓</p>
+            <p>Wähle ein Farbschema:</p>
+            <div id="theme-list">
+            </div> -->
             <!-- <div class="button-group">
                 <button id="back-from-settings">ZURÜCK ZUM MENÜ</button>
             </div> -->
