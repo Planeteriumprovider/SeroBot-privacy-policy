@@ -1,0 +1,134 @@
+/* ACHTUNG HAFTUNGSAUSSCHLUSS! */
+
+/* Copyright 2025 | planeteriumprovider
+
+/* Licensed under the Apache License, Version 2.0 (the "License");
+/* You may use this file only in accordance with the License.
+/* You may obtain a copy of the License at
+/* 
+/* http://www.apache.org/licenses/LICENSE-2.0
+/* 
+/* Unless required by law or agreed to in writing,
+/* Products distributed under the License are distributed on an "AS IS" basis,
+/* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+/* The specific language for permissions and
+/* limitations under the License.
+/* 
+/*    |---------------------------------------------------------------------------------------------------------------------------------|
+/*    |                                                                                                                                 |
+/*    |             ACHTUNG! DIE OFFIZIELLEN RECHTE BESITZT XOIS UND DIE WEITERVERWENDUNG IST STRENGSTENS VERBOTEN!                     |
+/*    |                        ES MUSS ERST EINE OFFIZIELLE GENEHMIGUNG VON XOIS EINGWHOLT WERDEN!!!                                    |
+/*    |                                                                                                                                 |   
+/*    |---------------------------------------------------------------------------------------------------------------------------------|
+/*      |                                                                                                                             |
+/*        |                   @planeteriumprovider hat die Berechtigung von XOIS für die Verwendung erhalten!                       |
+/*      |                                                                                                                             |
+/*        |                                              EIGENTÜMER VOM CODE: XOIS                                                  |
+/*      |                                                                                                                             |
+/*    |---------------------------------------------------------------------------------------------------------------------------------|
+/*    | ---  WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF + WEITERE INFOS AUF  --- |
+/*    |                                                                                                                                 |
+/*    | Instagram :  https://www.instagram.com/hakaidev?igsh=cmthM2cxYjJ5OWwy                                                           |
+/*    | Instagram :  https://www.instagram.com/meepcoin?igsh=MTRtYWZuaWV5eTFlZQ==                                                       |
+/*    | Instagram :  https://www.instagram.com/metha_connection?igsh=OWZsOTE5OWJibXN4                                                   |
+/*    | Whatsapp  :  https://whatsapp.com/channel/0029VaCABrQ0AgWFWiCXq13W                                                              |
+/*    | Whatsapp  :  https://whatsapp.com/channel/0029VaN2GYGCMY0Gr2mTFW2p                                                              |
+/*    | Youtube   :  https://youtube.com/@HakaiDEVxMETHA?si=jMuzOjq8cvVdm8ed                                                            |
+/*    | Discord   :  https://discord.gg/XW4gJQPf                                                                                        |
+/*    | Homepage  :  https://hakaidev-x-metha.org                                                                                       |
+/*    | Email     :  hakaidevxmethahelp@gmail.com                                                                                       |
+/*    |                                                                                                                                 |
+/*    |---------------------------------------------------------------------------------------------------------------------------------|
+/* 
+/* Copyright 2025  |  planeteriumprovider
+/* 
+/* Lizenziert unter der Apache-Lizenz, Version 2.0 (die „Lizenz“);
+/* Sie dürfen diese Datei nur in Übereinstimmung mit der Lizenz verwenden.
+/* Sie können eine Kopie der Lizenz erhalten unter
+/* 
+/* http://www.apache.org/licenses/LICENSE-2.0
+/* 
+/* Sofern nicht gesetzlich vorgeschrieben oder schriftlich vereinbart,
+/* Die unter der Lizenz vertriebenen Produkte werden auf einer „AS IS“-Basis vertrieben,
+/* OHNE GARANTIEN ODER BEDINGUNGEN JEGLICHER ART, weder ausdrücklich noch stillschweigend.
+/* Die spezifischen Sprachbestimmungen für Berechtigungen und
+/* Einschränkungen im Rahmen der Lizenz. */
+
+
+
+
+#color-settings-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+#color-settings-box {
+    background-color: var(--background);
+    padding: 30px 50px;
+    border-radius: 10px;
+    text-align: center;
+    color: var(--light-text);
+    border: 3px solid var(--primary-neon);
+    box-shadow: 0 0 30px var(--primary-neon);
+    max-width: 90vw;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+#color-settings-box h1 {
+    color: var(--primary-neon);
+    text-shadow: 0 0 20px var(--primary-neon), 0 0 30px var(--primary-neon);
+}
+#color-settings-box p {
+    color: var(--secondary-neon);
+    text-shadow: 0 0 5px var(--secondary-neon);
+}
+#theme-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+.theme-button {
+    padding: 15px 20px;
+    margin: 5px;
+    font-size: 16px; 
+    cursor: pointer;
+    border: 2px solid var(--primary-neon);
+    border-radius: 5px;
+    box-shadow: 0 0 15px var(--primary-neon);
+    transition: background-color 0.2s, box-shadow 0.2s, opacity 0.2s, filter 0.2s;
+    flex-grow: 1;
+    min-width: 180px;
+    max-width: 250px;
+}
+#color-settings-box.columns-2 #theme-list {
+    max-width: 520px;
+}
+#color-settings-box.columns-2 .theme-button {
+    flex-basis: 48%;
+    max-width: 250px;
+}
+#color-settings-box.columns-3 #theme-list {
+    max-width: 780px;
+}
+#color-settings-box.columns-3 .theme-button {
+    flex-basis: 32%;
+    max-width: 250px;
+}
+.theme-button:hover {
+    filter: brightness(1.2); 
+    box-shadow: 0 0 30px var(--primary-neon);
+}
+.theme-button.active {
+    opacity: 0.8; 
+    border: 4px solid var(--secondary-neon) !important;
+    box-shadow: 0 0 10px var(--secondary-neon) !important;
+    transform: none; 
