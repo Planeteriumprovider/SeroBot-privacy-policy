@@ -1,0 +1,12 @@
+{
+"PRIMARY_NEON": "#00aaff",
+"SECONDARY_NEON": "#e0ffff",
+"BACKGROUND": "#0a192f",
+"GAME_GRID_BACKGROUND": "#040b15",
+"GREY_CONTROL": "#2c3b53",
+"PRIMARY_DARK": "#1f3a5f",
+"SECONDARY_DARK": "#0088aa",
+"DARK_TEXT": "#0a192f",
+"LIGHT_TEXT": "#f0f8ff"
+}
+
