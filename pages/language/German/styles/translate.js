@@ -75,15 +75,32 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 /*               Translate Handling                 */
 
-const toggleBtn = document.getElementById('toggleLang');
-    const deSection = document.getElementById('de');
-    const enSection = document.getElementById('en');
+ document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById('toggleLang');
+  const deSection = document.getElementById('de');
+  const enSection = document.getElementById('en');
 
+  if (toggleBtn && deSection && enSection) {
     toggleBtn.addEventListener('click', () => {
       const isGerman = deSection.classList.contains('active');
       deSection.classList.toggle('active', !isGerman);
       enSection.classList.toggle('active', isGerman);
       toggleBtn.textContent = isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English';
     });
+  }
+     
+});
