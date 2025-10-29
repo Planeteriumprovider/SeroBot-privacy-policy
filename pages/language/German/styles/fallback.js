@@ -66,11 +66,12 @@
 
 
 
+const menu = document.getElementById("menu");
+const menuBtn = document.getElementById("menuBtn");
 
- // Schließt das Menü, wenn außerhalb geklickt wird
-    document.addEventListener("click", (e) => {
-      if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
-        menu.style.display = "none";
-        open = false;
-      }
-    });
+document.addEventListener("click", (e) => {
+  if (menu && menuBtn && !menu.contains(e.target) && !menuBtn.contains(e.target)) {
+    menu.style.display = "none";
+    open = false;
+  }
+});
