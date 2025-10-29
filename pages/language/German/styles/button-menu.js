@@ -75,12 +75,29 @@
 
 
 
-    // Hamburger Menu
-    const menuBtn = document.getElementById("menuBtn");
-    const menu = document.getElementById("menu");
-    let open = false;
+ document.addEventListener("DOMContentLoaded", () => {
+  const menuBtn = document.getElementById("menuBtn");
+  const menu = document.getElementById("menu");
+  let open = false;
 
+  if (menuBtn && menu) {
     menuBtn.addEventListener("click", () => {
       open = !open;
       menu.style.display = open ? "flex" : "none";
     });
+  }
+
+  const toggleBtn = document.getElementById('toggleLang');
+  const deSection = document.getElementById('de');
+  const enSection = document.getElementById('en');
+
+  if (toggleBtn && deSection && enSection) {
+    toggleBtn.addEventListener('click', () => {
+      const isGerman = deSection.classList.contains('active');
+      deSection.classList.toggle('active', !isGerman);
+      enSection.classList.toggle('active', isGerman);
+      toggleBtn.textContent = isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English';
+    });
+  }
+});
+
